@@ -10,6 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/footer";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -26,18 +27,24 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-screen flex flex-col relative">
+        {/* Patrón de cuadrícula sutil con color pastel */}
+        
+        
         <Navbar />
-        {children}
+        <main className="container mx-auto px-4 py-6 flex-grow">
+          {children}
+        </main>
         <ScrollRestoration />
         <Scripts />
+        <Footer />
       </body>
     </html>
   );

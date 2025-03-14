@@ -54,6 +54,7 @@ export interface Game {
   publishers?: Publisher[]
   tags?: Tag[]
   description_raw?: string
+  parent_platforms?: { platform: { id: number; name: string } }[];
 }
 
 export interface Trailer {

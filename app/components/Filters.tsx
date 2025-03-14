@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import type { ChangeEvent } from 'react'
-import type { FiltersType } from '../types'
+import React, { useState, useEffect } from 'react';
+import type { ChangeEvent } from 'react';
+import type { FiltersType } from '../types';
+import DeveloperSearch from './DeveloperSelector';
 
 // Definimos opciones para los selectores
 const platformOptions = [
@@ -13,6 +14,8 @@ const platformOptions = [
   { id: '7', name: 'Nintendo Switch' },
   { id: '3', name: 'iOS' },
   { id: '21', name: 'Android' },
+  { id: '83', name: 'Nintendo 64' },
+  { id: '24', name: 'Game Boy Advance' },
 ];
 
 const genreOptions = [
@@ -32,7 +35,7 @@ const genreOptions = [
   { id: '15', name: 'Sports' },
   { id: '59', name: 'Massively Multiplayer' },
   { id: '6', name: 'Fighting' },
-  { id: '19', name: 'Family' },
+{ id: '19', name: 'Family' },
   { id: '28', name: 'Board Games' },
   { id: '34', name: 'Educational' },
   { id: '17', name: 'Card' },
@@ -78,12 +81,20 @@ interface FiltersProps {
 
 const Filters: React.FC<FiltersProps> = ({ filters, setFilters }) => {
   const [localFilters, setLocalFilters] = useState<FiltersType>(filters);
+  const [isExpanded, setIsExpanded] = useState(false);
   
-  const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setLocalFilters(prev => ({
       ...prev,
       [name]: value
+    }));
+  };
+  
+  const handleDeveloperChange = (developerSlug: string) => {
+    setLocalFilters(prev => ({
+      ...prev,
+      developer: developerSlug
     }));
   };
 
@@ -102,128 +113,144 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters }) => {
   }, [filters]);
 
   return (
-    <div className="my-4 bg-gray-100 p-4 rounded-lg">
-      <h3 className="text-lg font-semibold mb-2">Filtros</h3>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="bg-white shadow-md rounded-lg p-4 my-6">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-semibold text-gray-800">Filtros</h3>
+        <button
+          type="button"
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium focus:outline-none"
+        >
+          {isExpanded ? 'Mostrar menos' : 'Mostrar más'}
+          <svg
+            className={`ml-1 w-5 h-5 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Selector de plataforma */}
         <div>
-          <label htmlFor="platform" className="block text-sm font-medium text-gray-700 mb-1">Plataforma</label>
+          <label htmlFor="platform" className="block text-sm font-medium text-gray-700 mb-1">
+            Plataforma
+          </label>
           <select
             id="platform"
             name="platform"
             value={localFilters.platform}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-gray-300 rounded-lg py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
           >
             {platformOptions.map(option => (
-              <option key={`platform-${option.id}`} value={option.id}>{option.name}</option>
+              <option key={`platform-${option.id}`} value={option.id}>
+                {option.name}
+              </option>
             ))}
           </select>
         </div>
-        
+
         {/* Selector de género */}
         <div>
-          <label htmlFor="genre" className="block text-sm font-medium text-gray-700 mb-1">Género</label>
+          <label htmlFor="genre" className="block text-sm font-medium text-gray-700 mb-1">
+            Género
+          </label>
           <select
             id="genre"
             name="genre"
             value={localFilters.genre}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-gray-300 rounded-lg py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
           >
             {genreOptions.map(option => (
-              <option key={`genre-${option.id}`} value={option.id}>{option.name}</option>
+              <option key={`genre-${option.id}`} value={option.id}>
+                {option.name}
+              </option>
             ))}
           </select>
         </div>
-        
+
         {/* Selector de año */}
         <div>
-          <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-1">Año</label>
+          <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-1">
+            Año de lanzamiento
+          </label>
           <select
             id="year"
             name="year"
             value={localFilters.year}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="w-full border border-gray-300 rounded-lg py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
           >
             {yearOptions.map(option => (
-              <option key={`year-${option.id}`} value={option.id}>{option.name}</option>
+              <option key={`year-${option.id}`} value={option.id}>
+                {option.name}
+              </option>
             ))}
           </select>
-        </div>
-        
-        {/* Selector de tag */}
-        <div>
-          <label htmlFor="tag" className="block text-sm font-medium text-gray-700 mb-1">Tag</label>
-          <select
-            id="tag"
-            name="tag"
-            value={localFilters.tag}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          >
-            {tagOptions.map(option => (
-              <option key={`tag-${option.id}`} value={option.id}>{option.name}</option>
-            ))}
-          </select>
-        </div>
-        
-        {/* Input de búsqueda por desarrollador */}
-        <div>
-          <label htmlFor="developer" className="block text-sm font-medium text-gray-700 mb-1">
-            Desarrollador <span className="text-xs text-gray-500">(ej: rockstar-games)</span>
-          </label>
-          <input
-            type="text"
-            id="developer"
-            name="developer"
-            placeholder="Ingresa un slug de desarrollador"
-            value={localFilters.developer}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-        
-        {/* Botón para limpiar filtros */}
-        <div className="flex items-end">
-          <button
-            onClick={() => {
-              const resetFilters = {
-                year: '',
-                genre: '',
-                platform: '',
-                tag: '',
-                developer: ''
-              };
-              setLocalFilters(resetFilters);
-              setFilters(resetFilters);
-            }}
-            className="w-full py-2 px-4 bg-gray-600 hover:bg-gray-700 text-white rounded-md focus:outline-none transition-colors"
-          >
-            Limpiar Filtros
-          </button>
         </div>
       </div>
-      
-      {/* Información sobre desarrolladores */}
-      {localFilters.developer && (
-        <div className="mt-4 text-sm text-gray-600 bg-blue-50 p-3 rounded">
-          <p className="font-medium">Tip para buscar por desarrollador:</p>
-          <p>Usa el slug del desarrollador (ej: 'rockstar-games', 'naughty-dog', 'cd-projekt-red')</p>
-          <p className="mt-1">Para ver todos los desarrolladores, consulta:&nbsp;
-            <a 
-              href="https://api.rawg.io/api/developers?key=a302f5e6822f494ab2db141385e43838" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Lista de desarrolladores
-            </a>
-          </p>
+
+      {/* Filtros adicionales (expandibles) */}
+      {isExpanded && (
+        <div className="mt-4 pt-4 border-t border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Selector de tag */}
+            <div>
+              <label htmlFor="tag" className="block text-sm font-medium text-gray-700 mb-1">
+                Tag
+              </label>
+              <select
+                id="tag"
+                name="tag"
+                value={localFilters.tag}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-lg py-2 px-3 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm"
+              >
+                {tagOptions.map(option => (
+                  <option key={`tag-${option.id}`} value={option.id}>
+                    {option.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Búsqueda de desarrollador */}
+            <div>
+              <DeveloperSearch 
+                value={localFilters.developer} 
+                onChange={handleDeveloperChange} 
+              />
+            </div>
+          </div>
         </div>
       )}
+
+      {/* Botones de acción */}
+      <div className="mt-4 flex justify-end">
+        <button
+          type="button"
+          onClick={() => {
+            const resetFilters = {
+              year: '',
+              genre: '',
+              platform: '',
+              tag: '',
+              developer: ''
+            };
+            setLocalFilters(resetFilters);
+            setFilters(resetFilters);
+          }}
+          className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+        >
+          Limpiar filtros
+        </button>
+      </div>
     </div>
   );
 };
