@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-gray-800 shadow-lg">
+    <nav className="bg-[#dfe8f0] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
                   d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" 
                 />
               </svg>
-              <span className="ml-2 text-xl font-bold text-white">GameFinder</span>
+              <span className="ml-2 text-xl font-bold text-indigo-800">GameFinder</span>
             </Link>
 
             {/* Enlaces de navegación para pantallas medianas y grandes */}
@@ -38,24 +38,24 @@ const Navbar: React.FC = () => {
               <Link
                 to="/"
                 className={`${
-                  isActive('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                } px-3 py-2 rounded-md text-sm font-medium`}
+                  isActive('/') ? 'text-indigo-600 border-b-2 border-indigo-500' : 'text-indigo-800 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300'
+                } px-3 py-2 rounded-md text-sm font-medium transition-colors`}
               >
                 Inicio
               </Link>
               <Link
                 to="/top-games"
                 className={`${
-                  isActive('/top-games') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                } px-3 py-2 rounded-md text-sm font-medium`}
+                  isActive('/top-games') ? 'text-indigo-600 border-b-2 border-indigo-500' : 'text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300'
+                } px-3 py-2 rounded-md text-sm font-medium transition-colors`}
               >
                 Top Juegos
               </Link>
               <Link
                 to="/new-releases"
                 className={`${
-                  isActive('/new-releases') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                } px-3 py-2 rounded-md text-sm font-medium`}
+                  isActive('/new-releases') ? 'text-indigo-600 border-b-2 border-indigo-500' : 'text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300'
+                } px-3 py-2 rounded-md text-sm font-medium transition-colors`}
               >
                 Nuevos Lanzamientos
               </Link>
@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
                 href="https://rawg.io/apidocs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300 px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
                 API Docs
               </a>
@@ -81,7 +81,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-indigo-600 hover:bg-gray-200 focus:outline-none"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -129,8 +129,8 @@ const Navbar: React.FC = () => {
           <Link
             to="/"
             className={`${
-              isActive('/') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-            } block px-3 py-2 rounded-md text-base font-medium`}
+              isActive('/') ? 'text-indigo-600 border-b-2 border-indigo-500' : 'text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300'
+            } block px-3 py-2 rounded-md text-base font-medium transition-colors`}
             onClick={() => setIsMenuOpen(false)}
           >
             Inicio
@@ -138,8 +138,8 @@ const Navbar: React.FC = () => {
           <Link
             to="/top-games"
             className={`${
-              isActive('/top-games') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-            } block px-3 py-2 rounded-md text-base font-medium`}
+              isActive('/top-games') ? 'text-indigo-600 border-b-2 border-indigo-500' : 'text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300'
+            } block px-3 py-2 rounded-md text-base font-medium transition-colors`}
             onClick={() => setIsMenuOpen(false)}
           >
             Top Juegos
@@ -147,8 +147,8 @@ const Navbar: React.FC = () => {
           <Link
             to="/new-releases"
             className={`${
-              isActive('/new-releases') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-            } block px-3 py-2 rounded-md text-base font-medium`}
+              isActive('/new-releases') ? 'text-indigo-600 border-b-2 border-indigo-500' : 'text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300'
+            } block px-3 py-2 rounded-md text-base font-medium transition-colors`}
             onClick={() => setIsMenuOpen(false)}
           >
             Nuevos Lanzamientos
@@ -157,7 +157,7 @@ const Navbar: React.FC = () => {
             href="https://rawg.io/apidocs"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            className="text-gray-700 hover:text-indigo-600 hover:border-b-2 hover:border-indigo-300 block px-3 py-2 rounded-md text-base font-medium transition-colors"
             onClick={() => setIsMenuOpen(false)}
           >
             API Docs

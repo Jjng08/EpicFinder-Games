@@ -77,7 +77,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
           </div>
 
           {/* Botón para ver más */}
-          <span className="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-xs px-3 py-1.5 text-center">
+          <span className="text-indigo-800 bg-indigo-100 hover:bg-indigo-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center">
             Ver detalles
           </span>
         </div>

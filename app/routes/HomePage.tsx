@@ -142,12 +142,12 @@ const HomePage: React.FC = () => {
   return (
     <div className="py-6">
       <h1 className="text-3xl font-bold mb-6">Explora Videojuegos</h1>
-      <p className='mb-2 text-color-black opacity-80'>Busca tu proximo juego, filtrando por Año, Genero, etc...</p>
+      <p className='mb-2 text-gray-700 '>Busca tu proximo juego, filtrando por Año, Genero, etc...</p>
       
       {/* Botón de filtros para móvil */}
       <button
         onClick={toggleMobileFilters}
-        className="md:hidden w-full mb-4 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+        className="md:hidden w-full mb-4 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 010 2H4a1 1 0 01-1-1zm3 6a1 1 0 011-1h10a1 1 0 010 2H7a1 1 0 01-1-1zm4 6a1 1 0 011-1h4a1 1 0 010 2h-4a1 1 0 01-1-1z" />
@@ -160,41 +160,49 @@ const HomePage: React.FC = () => {
         <div className="flex-1 order-2 md:order-1">
           {/* Resumen de resultados y filtros activos - visible solo cuando hay filtros */}
           {(filters.year || filters.genre || filters.platform || filters.tag || filters.developer || searchQuery) && (
-            <div className="bg-blue-50 p-3 rounded-lg mb-4 flex flex-wrap items-center gap-2">
-              <span className="text-sm text-blue-700 font-medium">Filtros aplicados:</span>
+            <div className="bg-indigo-50 p-3 rounded-lg mb-4 flex flex-wrap items-center gap-2">
+              <span className="text-sm text-indigo-700 font-medium">Filtros aplicados:</span>
               
               {searchQuery && (
-                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
                   Búsqueda: {searchQuery}
+                  <button 
+                    onClick={() => setSearchQuery('')} 
+                    className="ml-1.5 text-indigo-600 hover:text-indigo-900"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
                 </span>
               )}
               
               {filters.year && (
-                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
                   Año: {filters.year}
                 </span>
               )}
               
               {filters.genre && (
-                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
                   Género: {filters.genre}
                 </span>
               )}
               
               {filters.platform && (
-                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
                   Plataforma: {filters.platform}
                 </span>
               )}
               
               {filters.tag && (
-                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
                   Tag: {filters.tag}
                 </span>
               )}
               
               {filters.developer && (
-                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
                   Desarrollador: {filters.developer}
                 </span>
               )}
@@ -249,10 +257,15 @@ const HomePage: React.FC = () => {
         <aside className={`w-full md:w-72 lg:w-80 order-1 md:order-2 ${showMobileFilters ? 'block' : 'hidden md:block'}`}>
           <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             {/* Contenedor unificado con cuadro redondeado */}
-            <div className="bg-white shadow-lg rounded-lg p-5 border border-gray-100">
+            <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
               {/* Sección de búsqueda */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">Buscar</h2>
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                  <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  Buscar
+                </h2>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearch} />
               </div>
               
@@ -261,7 +274,12 @@ const HomePage: React.FC = () => {
               
               {/* Sección de filtros */}
               <div>
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">Filtros</h2>
+                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                  <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 010 2H4a1 1 0 01-1-1zm3 6a1 1 0 011-1h10a1 1 0 010 2H7a1 1 0 01-1-1zm4 6a1 1 0 011-1h4a1 1 0 010 2h-4a1 1 0 01-1-1z" />
+                  </svg>
+                  Filtros
+                </h2>
                 <Filters filters={filters} setFilters={setFilters} sidebarMode={true} />
               </div>
             </div>

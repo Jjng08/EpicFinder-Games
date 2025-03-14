@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-800 text-white mt-auto">
+        <footer className="bg-[#dfe8f0] text-gray mt-auto">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <Link to="/" className="flex items-center mb-4 sm:mb-0 space-x-3">
@@ -22,23 +22,23 @@ export default function Footer() {
                         </svg>
                         <span className="self-center text-2xl font-semibold whitespace-nowrap">GameFinder</span>
                     </Link>
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-400 sm:mb-0">
+                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-black-200 sm:mb-0">
                         <li>
-                            <Link to="/" className="hover:text-white me-4 md:me-6">Inicio</Link>
+                            <Link to="/" className="hover:text-indigo-600 me-4 md:me-6">Inicio</Link>
                         </li>
                         <li>
-                            <Link to="/top-games" className="hover:text-white me-4 md:me-6">Top Juegos</Link>
+                            <Link to="/top-games" className="hover:text-indigo-600 me-4 md:me-6">Top Juegos</Link>
                         </li>
                         <li>
-                            <Link to="/new-releases" className="hover:text-white me-4 md:me-6">Nuevos Lanzamientos</Link>
+                            <Link to="/new-releases" className="hover:text-indigo-600 me-4 md:me-6">Nuevos Lanzamientos</Link>
                         </li>
                         <li>
-                            <a href="https://rawg.io/apidocs" target="_blank" rel="noopener noreferrer" className="hover:text-white">API Docs</a>
+                            <a href="https://rawg.io/apidocs" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600">API Docs</a>
                         </li>
                     </ul>
                 </div>
                 <hr className="my-6 border-gray-700 sm:mx-auto lg:my-8" />
-                <span className="block text-sm text-gray-400 sm:text-center">
+                <span className="block text-sm text-black-200 sm:text-center">
                     © {new Date().getFullYear()} <Link to="/" className="hover:underline">GameFinder™</Link>. Todos los derechos reservados.
                 </span>
             </div>
