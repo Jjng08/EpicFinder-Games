@@ -77,11 +77,12 @@ const yearOptions = [
 interface FiltersProps {
   filters: FiltersType;
   setFilters: React.Dispatch<React.SetStateAction<FiltersType>>;
+  sidebarMode?: boolean; // Nueva prop para modo sidebar
 }
 
-const Filters: React.FC<FiltersProps> = ({ filters, setFilters }) => {
+const Filters: React.FC<FiltersProps> = ({ filters, setFilters, sidebarMode = false }) => {
   const [localFilters, setLocalFilters] = useState<FiltersType>(filters);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(sidebarMode); // Si está en sidebar, siempre expandido
   
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -113,28 +114,31 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters }) => {
   }, [filters]);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 my-6">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-gray-800">Filtros</h3>
-        <button
-          type="button"
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium focus:outline-none"
-        >
-          {isExpanded ? 'Mostrar menos' : 'Mostrar más'}
-          <svg
-            className={`ml-1 w-5 h-5 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+    <div className={sidebarMode ? "" : "bg-white shadow-md rounded-lg p-4 my-6"}>
+      {!sidebarMode && (
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold text-gray-800">Filtros</h3>
+          <button
+            type="button"
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium focus:outline-none"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-      </div>
+            {isExpanded ? 'Mostrar menos' : 'Mostrar más'}
+            <svg
+              className={`ml-1 w-5 h-5 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+      )}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* En modo sidebar, muestra los filtros en una columna */}
+      <div className={`${sidebarMode ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-3 gap-4'}`}>
         {/* Selector de plataforma */}
         <div>
           <label htmlFor="platform" className="block text-sm font-medium text-gray-700 mb-1">
@@ -196,10 +200,10 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters }) => {
         </div>
       </div>
 
-      {/* Filtros adicionales (expandibles) */}
-      {isExpanded && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Filtros adicionales - siempre visibles en modo sidebar */}
+      {(isExpanded || sidebarMode) && (
+        <div className={`${sidebarMode ? 'mt-4 space-y-4' : 'mt-4 pt-4 border-t border-gray-200'}`}>
+          <div className={`${sidebarMode ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-4'}`}>
             {/* Selector de tag */}
             <div>
               <label htmlFor="tag" className="block text-sm font-medium text-gray-700 mb-1">

@@ -36,10 +36,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-h-screen flex flex-col relative">
         {/* Patrón de cuadrícula sutil con color pastel */}
-        
+       
         
         <Navbar />
         <main className="container mx-auto px-4 py-6 flex-grow">
+          
           {children}
         </main>
         <ScrollRestoration />

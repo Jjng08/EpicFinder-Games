@@ -31,6 +31,7 @@ const HomePage: React.FC = () => {
   const [page, setPage] = useState<number>(1)
   const [totalPages, setTotalPages] = useState<number>(1)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [showMobileFilters, setShowMobileFilters] = useState<boolean>(false)
   const pageSize = 20
   
   // Función para obtener juegos con los parámetros actuales
@@ -56,7 +57,7 @@ const HomePage: React.FC = () => {
   // Efecto para obtener juegos cuando cambian los parámetros relevantes
   useEffect(() => {
     fetchGames()
-  }, [page, searchQuery, filters]) // Observamos todos los filtros
+  }, [page, searchQuery, filters])
   
   // Manejador para cambios en la búsqueda
   const handleSearch = (query: string) => {
@@ -133,56 +134,86 @@ const HomePage: React.FC = () => {
     return items;
   };
 
+  // Toggle para los filtros en móvil
+  const toggleMobileFilters = () => {
+    setShowMobileFilters(!showMobileFilters);
+  };
+
   return (
     <div className="py-6">
       <h1 className="text-3xl font-bold mb-6">Explora Videojuegos</h1>
       
-      {/* Pasamos el nuevo handler a SearchBar */}
+      {/* Barra de búsqueda */}
       <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearch} />
-      <Filters filters={filters} setFilters={setFilters} />
       
-      {isLoading ? (
-        <div className="flex justify-center my-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-        </div>
-      ) : (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
-            {games.length > 0 ? (
-              games.map(game => (
-                <GameCard key={game.id} game={game} />
-              ))
-            ) : (
-              <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 bg-gray-100 rounded-lg">
-                <p className="text-lg text-gray-600">No se encontraron juegos con los criterios especificados.</p>
-                <p className="mt-2 text-gray-500">Intenta con diferentes filtros o términos de búsqueda.</p>
-              </div>
-            )}
-          </div>
-          
-          {games.length > 0 && (
-            <div className="flex flex-col items-center my-8">
-              {/* Texto informativo */}
-              <span className="text-sm text-gray-700 mb-3">
-                Mostrando <span className="font-semibold text-gray-900">{(page - 1) * pageSize + 1}</span> a{" "}
-                <span className="font-semibold text-gray-900">
-                  {Math.min(page * pageSize, (totalPages * pageSize))}
-                </span>{" "}
-                de <span className="font-semibold text-gray-900">{totalPages * pageSize}</span> juegos
-              </span>
-              
-              {/* Sistema de paginación mejorado */}
-              <Pagination>
-                <PaginationPrevious onClick={handlePreviousPage} disabled={page <= 1} />
-                <PaginationList>
-                  {generatePaginationItems()}
-                </PaginationList>
-                <PaginationNext onClick={handleNextPage} disabled={page >= totalPages} />
-              </Pagination>
+      {/* Botón de filtros para móvil */}
+      <button
+        onClick={toggleMobileFilters}
+        className="md:hidden w-full mb-4 flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 010 2H4a1 1 0 01-1-1zm3 6a1 1 0 011-1h10a1 1 0 010 2H7a1 1 0 01-1-1zm4 6a1 1 0 011-1h4a1 1 0 010 2h-4a1 1 0 01-1-1z" />
+        </svg>
+        <span>{showMobileFilters ? 'Ocultar filtros' : 'Mostrar filtros'}</span>
+      </button>
+      
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Contenido principal (Juegos) */}
+        <div className="flex-1 order-2 md:order-1">
+          {isLoading ? (
+            <div className="flex justify-center my-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
             </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 my-4">
+                {games.length > 0 ? (
+                  games.map(game => (
+                    <GameCard key={game.id} game={game} />
+                  ))
+                ) : (
+                  <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 bg-gray-100 rounded-lg">
+                    <p className="text-lg text-gray-600">No se encontraron juegos con los criterios especificados.</p>
+                    <p className="mt-2 text-gray-500">Intenta con diferentes filtros o términos de búsqueda.</p>
+                  </div>
+                )}
+              </div>
+              
+              {games.length > 0 && (
+                <div className="flex flex-col items-center my-8">
+                  {/* Texto informativo */}
+                  <span className="text-sm text-gray-700 mb-3">
+                    Mostrando <span className="font-semibold text-gray-900">{(page - 1) * pageSize + 1}</span> a{" "}
+                    <span className="font-semibold text-gray-900">
+                      {Math.min(page * pageSize, (totalPages * pageSize))}
+                    </span>{" "}
+                    de <span className="font-semibold text-gray-900">{totalPages * pageSize}</span> juegos
+                  </span>
+                  
+                  {/* Sistema de paginación mejorado */}
+                  <Pagination>
+                    <PaginationPrevious onClick={handlePreviousPage} disabled={page <= 1} />
+                    <PaginationList>
+                      {generatePaginationItems()}
+                    </PaginationList>
+                    <PaginationNext onClick={handleNextPage} disabled={page >= totalPages} />
+                  </Pagination>
+                </div>
+              )}
+            </>
           )}
-        </>
-      )}
+        </div>
+        
+        {/* Sidebar con filtros */}
+        <aside className={`w-full md:w-72 lg:w-80 order-1 md:order-2 ${showMobileFilters ? 'block' : 'hidden md:block'}`}>
+          <div className="sticky top-4">
+            <div className="bg-white shadow-md rounded-lg p-4">
+              <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-4">Filtros</h2>
+              <Filters filters={filters} setFilters={setFilters} sidebarMode={true} />
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 };
