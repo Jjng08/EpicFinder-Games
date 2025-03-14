@@ -4,6 +4,14 @@ import GameCard from '../components/GameCard'
 import Filters from '../components/Filters'
 import SearchBar from '../components/SearchBar'
 import type { FiltersType, Game } from '../types'
+import { 
+  Pagination, 
+  PaginationPrevious, 
+  PaginationNext,
+  PaginationList,
+  PaginationPage,
+  PaginationGap
+} from '../components/Pagination';
 
 const HomePage: React.FC = () => {
   // Estado para la lista actual de juegos
@@ -69,6 +77,62 @@ const HomePage: React.FC = () => {
     }
   }
 
+  // Función para generar los elementos de paginación
+  const generatePaginationItems = () => {
+    const items = [];
+    
+    // Siempre mostrar la primera página
+    items.push(
+      <PaginationPage 
+        key="page-1" 
+        page={1} 
+        current={page === 1} 
+        onClick={() => setPage(1)}
+      />
+    );
+    
+    // Si estamos más allá de la página 3, mostrar puntos suspensivos después de la página 1
+    if (page > 3) {
+      items.push(<PaginationGap key="gap-1" />);
+    }
+    
+    // Páginas alrededor de la página actual
+    const startPage = Math.max(2, page - 1);
+    const endPage = Math.min(totalPages - 1, page + 1);
+    
+    for (let i = startPage; i <= endPage; i++) {
+      if (i <= 1 || i >= totalPages) continue;
+      
+      items.push(
+        <PaginationPage 
+          key={`page-${i}`} 
+          page={i} 
+          current={page === i} 
+          onClick={() => setPage(i)}
+        />
+      );
+    }
+    
+    // Si no estamos cerca de la última página, mostrar puntos suspensivos
+    if (page < totalPages - 2) {
+      items.push(<PaginationGap key="gap-2" />);
+    }
+    
+    // Siempre mostrar la última página si hay más de una página
+    if (totalPages > 1) {
+      items.push(
+        <PaginationPage 
+          key={`page-${totalPages}`} 
+          page={totalPages} 
+          current={page === totalPages} 
+          onClick={() => setPage(totalPages)}
+        />
+      );
+    }
+    
+    return items;
+  };
+
   return (
     <div className="py-6">
       <h1 className="text-3xl font-bold mb-6">Explora Videojuegos</h1>
@@ -97,22 +161,24 @@ const HomePage: React.FC = () => {
           </div>
           
           {games.length > 0 && (
-            <div className="flex justify-between items-center my-8">
-              <button 
-                onClick={handlePreviousPage} 
-                disabled={page <= 1}
-                className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
-              >
-                Anterior
-              </button>
-              <span className="text-gray-700">Página {page} de {totalPages}</span>
-              <button 
-                onClick={handleNextPage} 
-                disabled={page >= totalPages}
-                className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
-              >
-                Siguiente
-              </button>
+            <div className="flex flex-col items-center my-8">
+              {/* Texto informativo */}
+              <span className="text-sm text-gray-700 mb-3">
+                Mostrando <span className="font-semibold text-gray-900">{(page - 1) * pageSize + 1}</span> a{" "}
+                <span className="font-semibold text-gray-900">
+                  {Math.min(page * pageSize, (totalPages * pageSize))}
+                </span>{" "}
+                de <span className="font-semibold text-gray-900">{totalPages * pageSize}</span> juegos
+              </span>
+              
+              {/* Sistema de paginación mejorado */}
+              <Pagination>
+                <PaginationPrevious onClick={handlePreviousPage} disabled={page <= 1} />
+                <PaginationList>
+                  {generatePaginationItems()}
+                </PaginationList>
+                <PaginationNext onClick={handleNextPage} disabled={page >= totalPages} />
+              </Pagination>
             </div>
           )}
         </>
