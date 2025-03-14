@@ -142,9 +142,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="py-6">
       <h1 className="text-3xl font-bold mb-6">Explora Videojuegos</h1>
-      
-      {/* Barra de búsqueda */}
-      <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearch} />
+      <p className='mb-2 text-color-black opacity-80'>Busca tu proximo juego, filtrando por Año, Genero, etc...</p>
       
       {/* Botón de filtros para móvil */}
       <button
@@ -160,6 +158,49 @@ const HomePage: React.FC = () => {
       <div className="flex flex-col md:flex-row gap-6">
         {/* Contenido principal (Juegos) */}
         <div className="flex-1 order-2 md:order-1">
+          {/* Resumen de resultados y filtros activos - visible solo cuando hay filtros */}
+          {(filters.year || filters.genre || filters.platform || filters.tag || filters.developer || searchQuery) && (
+            <div className="bg-blue-50 p-3 rounded-lg mb-4 flex flex-wrap items-center gap-2">
+              <span className="text-sm text-blue-700 font-medium">Filtros aplicados:</span>
+              
+              {searchQuery && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Búsqueda: {searchQuery}
+                </span>
+              )}
+              
+              {filters.year && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Año: {filters.year}
+                </span>
+              )}
+              
+              {filters.genre && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Género: {filters.genre}
+                </span>
+              )}
+              
+              {filters.platform && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Plataforma: {filters.platform}
+                </span>
+              )}
+              
+              {filters.tag && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Tag: {filters.tag}
+                </span>
+              )}
+              
+              {filters.developer && (
+                <span className="inline-flex items-center bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                  Desarrollador: {filters.developer}
+                </span>
+              )}
+            </div>
+          )}
+          
           {isLoading ? (
             <div className="flex justify-center my-12">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -204,12 +245,25 @@ const HomePage: React.FC = () => {
           )}
         </div>
         
-        {/* Sidebar con filtros */}
+        {/* Sidebar con búsqueda y filtros */}
         <aside className={`w-full md:w-72 lg:w-80 order-1 md:order-2 ${showMobileFilters ? 'block' : 'hidden md:block'}`}>
-          <div className="sticky top-4">
-            <div className="bg-white shadow-md rounded-lg p-4">
-              <h2 className="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2 mb-4">Filtros</h2>
-              <Filters filters={filters} setFilters={setFilters} sidebarMode={true} />
+          <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+            {/* Contenedor unificado con cuadro redondeado */}
+            <div className="bg-white shadow-lg rounded-lg p-5 border border-gray-100">
+              {/* Sección de búsqueda */}
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">Buscar</h2>
+                <SearchBar searchQuery={searchQuery} setSearchQuery={handleSearch} />
+              </div>
+              
+              {/* Divisor */}
+              <div className="border-b border-gray-200 my-4"></div>
+              
+              {/* Sección de filtros */}
+              <div>
+                <h2 className="text-lg font-semibold text-gray-800 mb-4">Filtros</h2>
+                <Filters filters={filters} setFilters={setFilters} sidebarMode={true} />
+              </div>
             </div>
           </div>
         </aside>
