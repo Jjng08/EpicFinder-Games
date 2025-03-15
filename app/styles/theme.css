@@ -1,55 +1,139 @@
+/* 1. VARIABLES DE TEMA */
 :root, .light-theme {
-  /* Variables del tema claro */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-accent: #dfe8f0;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-accent: #4f46e5;
-  --border-color: #e5e7eb;
-  --card-bg: #ffffff;
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --badge-bg: rgba(79, 70, 229, 0.1);
-  --badge-text: #4f46e5;
-  --navbar-text: #1f2937;
-  --footer-text: #1f2937;
-  --link-text: #4f46e5;
-  --link-hover: #4338ca;
-  --sidebar-bg: #ffffff;
+  /* Colores base */
+  --color-primary: #4f46e5;         /* indigo-600 */
+  --color-primary-hover: #4338ca;   /* indigo-700 */
+  --color-primary-light: #e0e7ff;   /* indigo-100 */
+  --color-primary-light-hover: #c7d2fe; /* indigo-200 */
+
+  /* Fondos */
+  --bg-body: #f9fafb;               /* gray-50 */
+  --bg-sidebar: #ffffff;            /* white */
+  --bg-card: #ffffff;               /* white */
+  --bg-navbar: #dfe8f0;             /* Personalizado */
+  --bg-footer: #dfe8f0;             /* Personalizado */
+  --bg-input: #ffffff;              /* white */
+  --bg-badge: rgba(79, 70, 229, 0.1); /* indigo-600 con opacidad */
+  --bg-tag: #e5e7eb; /* gray-200 */
+
+  /* Textos */
+  --text-normal: #1f2937;           /* gray-800 */
+  --text-muted: #6b7280;            /* gray-500 */
+  --text-light: #9ca3af;            /* gray-400 */
+  --text-accent: #4f46e5;           /* indigo-600 */
+  --text-badge: #4f46e5;            /* indigo-600 */
+  --text-tag: #4b5563; /* gray-600 */
+  --text-card-title: #1f2937;       /* gray-800 */
+  --text-button: #3730a3;           /* indigo-800 */
+  --text-navbar: #1f2937;           /* gray-800 */
+  --text-footer: #1f2937;           /* gray-800 */
+  --text-highlight: #111827; /* gray-900 */
+
+  /* Bordes */
+  --border-normal: #e5e7eb;         /* gray-200 */
+  --border-focus: #4f46e5;          /* indigo-600 */
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  /* Patrones de fondo */
   --color-grid-lines: rgba(223, 232, 240, 0.1);
   --color-radial-gradient: rgba(223, 232, 240, 0.3);
+  
+  /* Componentes específicos */
+  --details-button-bg: #e0e7ff;     /* indigo-100 */
+  --details-button-text: #3730a3;   /* indigo-800 */
+  --details-button-hover: #c7d2fe;  /* indigo-200 */
+
+  /* Variables para Game Detail */
+  --game-detail-bg: #ffffff;
+  --game-detail-text: #1f2937;
+  --game-detail-secondary-text: #6b7280;
+  --game-detail-heading: #1f2937;
+  --game-detail-border: #e5e7eb;
+  --game-detail-tag-bg: #e5e7eb;
+  --game-detail-tag-text: #4b5563;
+
+  /* Variables para fondos específicos */
+  --bg-error-container: #f9fafb; /* gray-50 */
+  --text-error-title: #111827; /* gray-900 */
+  --text-error-message: #4b5563; /* gray-600 */
 }
 
 .dark-theme {
-  /* Variables del tema oscuro - ajustadas para mejor contraste */
-  --bg-primary: #1e293b;       /* Fondo principal más claro */
-  --bg-secondary: #0f172a;     /* Fondo secundario (body) */
-  --bg-accent: #0f172a;        /* Navbar y footer más oscuros */
-  --text-primary: #f3f4f6;
-  --text-secondary: #d1d5db;
-  --text-accent: #818cf8;
-  --border-color: #334155;
-  --card-bg: #1e293b;          /* Fondo de tarjetas más claro que el body */
-  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  --badge-bg: rgba(129, 140, 248, 0.2);
-  --badge-text: #a5b4fc;
-  --navbar-text: #f3f4f6;
-  --footer-text: #f3f4f6;
-  --link-text: #818cf8;
-  --link-hover: #a5b4fc;
-  --sidebar-bg: #1e293b;       /* Fondo del sidebar igual que las tarjetas */
+  /* Colores base */
+  --color-primary: #818cf8;         /* indigo-400 */
+  --color-primary-hover: #a5b4fc;   /* indigo-300 */
+  --color-primary-light: rgba(129, 140, 248, 0.2); /* indigo-400 con opacidad */
+  --color-primary-light-hover: rgba(129, 140, 248, 0.3); /* indigo con más opacidad */
+
+  /* Fondos */
+  --bg-body: #0f172a;               /* slate-900 */
+  --bg-sidebar: #1e293b;            /* slate-800 */
+  --bg-card: #1e293b;               /* slate-800 */
+  --bg-navbar: #0f172a;             /* slate-900 */
+  --bg-footer: #0f172a;             /* slate-900 */
+  --bg-input: #1e293b;              /* slate-800 */
+  --bg-badge: rgba(129, 140, 248, 0.2); /* indigo-400 con opacidad */
+  --bg-tag: #374151; /* gray-700 */
+
+  /* Textos */
+  --text-normal: #f3f4f6;           /* gray-100 */
+  --text-muted: #d1d5db;            /* gray-300 */
+  --text-light: #9ca3af;            /* gray-400 */
+  --text-accent: #818cf8;           /* indigo-400 */
+  --text-badge: #a5b4fc;            /* indigo-300 */
+  --text-tag: #d1d5db; /* gray-300 */
+  --text-card-title: #f3f4f6;       /* gray-100 */
+  --text-button: #a5b4fc;           /* indigo-300 */
+  --text-navbar: #f3f4f6;           /* gray-100 */
+  --text-footer: #f3f4f6;           /* gray-100 */
+  --text-highlight: #f3f4f6; /* gray-100 */
+
+  /* Bordes */
+  --border-normal: #334155;         /* slate-700 */
+  --border-focus: #818cf8;          /* indigo-400 */
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.18);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+  
+  /* Patrones de fondo */
   --color-grid-lines: rgba(75, 85, 99, 0.1);
   --color-radial-gradient: rgba(75, 85, 99, 0.3);
+  
+  /* Componentes específicos */
+  --details-button-bg: rgba(79, 70, 229, 0.2); /* indigo-900 con opacidad */
+  --details-button-text: #a5b4fc;   /* indigo-300 */
+  --details-button-hover: rgba(79, 70, 229, 0.4); /* indigo con opacidad aumentada */
+
+  /* Variables para Game Detail */
+  --game-detail-bg: #1e293b;
+  --game-detail-text: #f3f4f6;
+  --game-detail-secondary-text: #cbd5e1;
+  --game-detail-heading: #f3f4f6;
+  --game-detail-border: #334155;
+  --game-detail-tag-bg: #334155;
+  --game-detail-tag-text: #cbd5e1;
+
+  /* Variables para fondos específicos */
+  --bg-error-container: #111827; /* gray-900 */
+  --text-error-title: #f9fafb; /* gray-50 */
+  --text-error-message: #d1d5db; /* gray-300 */
 }
 
-/* Estilos base que usan las variables */
+/* 2. ESTILOS BASE */
 body {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
+  background-color: var(--bg-body);
+  color: var(--text-normal);
 }
 
+/* Patrones de fondo */
 .bg-pattern {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-body);
   background-image: linear-gradient(to right, var(--color-grid-lines) 1px, transparent 1px), 
                    linear-gradient(to bottom, var(--color-grid-lines) 1px, transparent 1px);
 }
@@ -58,121 +142,243 @@ body {
   background: radial-gradient(circle 500px at 50% 200px, var(--color-radial-gradient), transparent);
 }
 
+/* 3. COMPONENTES PRINCIPALES */
+/* Navbar */
 .navbar {
-  background-color: var(--bg-accent);
-  color: var(--navbar-text);
+  background-color: var(--bg-navbar);
+  color: var(--text-navbar);
 }
 
+.navbar a {
+  color: var(--text-navbar);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--color-primary);
+}
+
+.navbar .active-link {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* Footer */
 .footer {
-  background-color: var(--bg-accent);
-  color: var(--footer-text);
+  background-color: var(--bg-footer);
+  color: var(--text-footer);
 }
 
+.footer a {
+  color: var(--text-footer);
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: var(--color-primary);
+}
+
+/* Tarjetas */
 .card {
-  background-color: var(--card-bg);
-  border-color: var(--border-color);
-  box-shadow: var(--card-shadow);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-normal);
+  box-shadow: var(--shadow-card);
+  color: var(--text-normal);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
+.card h5 {
+  color: var(--text-card-title);
+}
+
+.light-theme .card {
+  background-color: #ffffff;
+  border-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.dark-theme .card {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f3f4f6;
+}
+
+/* Sidebar */
 .sidebar {
-  background-color: var(--sidebar-bg);
-  border-color: var(--border-color);
+  background-color: var(--bg-sidebar);
+  border: 1px solid var(--border-normal);
+  color: var(--text-normal);
 }
 
+/* Badges */
 .badge {
-  background-color: var(--badge-bg);
-  color: var(--badge-text);
+  background-color: var(--bg-badge);
+  color: var(--text-badge);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-a {
-  color: var(--link-text);
+/* Clases para las etiquetas y badges */
+.tag {
+  background-color: var(--bg-tag);
+  color: var(--text-tag);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
 }
 
-a:hover {
-  color: var(--link-hover);
+/* Game Detail Page */
+.game-detail-card {
+  background-color: var(--game-detail-bg) !important;
+  color: var(--game-detail-text) !important;
+  border: 1px solid var(--game-detail-border) !important;
+  box-shadow: var(--shadow-card);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Transiciones suaves */
+.game-detail-heading {
+  color: var(--game-detail-heading);
+}
+
+.game-detail-tag {
+  background-color: var(--game-detail-tag-bg);
+  color: var(--game-detail-tag-text);
+}
+
+.game-detail-border {
+  border-color: var(--game-detail-border);
+}
+
+/* 4. BOTONES Y CONTROLES */
+/* Botón de tema */
+.theme-toggle-btn {
+  color: var(--text-normal);
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  background-color: rgba(156, 163, 175, 0.2); 
+}
+
+/* Botones de acción estándar */
+.btn-action {
+  background-color: var(--color-primary-light);
+  color: var(--text-button);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-action:hover {
+  background-color: var(--color-primary-light-hover);
+}
+
+/* Botón "Ver detalles" */
+.details-button {
+  background-color: var(--details-button-bg);
+  color: var(--details-button-text);
+  transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+  background-color: var(--details-button-hover);
+}
+
+/* 5. PAGINACIÓN */
+.pagination-btn {
+  background-color: var(--bg-card);
+  color: var(--text-normal);
+  border: 1px solid var(--border-normal);
+  transition: background-color 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--bg-navbar);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-btn-active {
+  background-color: var(--color-primary);
+  color: white;
+  border: 1px solid var(--color-primary);
+}
+
+.pagination-btn-active:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* 6. FORMULARIOS */
+input, select, textarea {
+  background-color: var(--bg-input);
+  color: var(--text-normal);
+  border-color: var(--border-normal);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--border-focus);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* 7. TRANSICIONES */
 .transition-theme {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Ajustes específicos para modo oscuro */
-.dark-theme .text-gray-700,
-.dark-theme .text-gray-800,
-.dark-theme .text-gray-900 {
-  color: var(--text-primary) !important;
+/* Clases de texto */
+.text-muted {
+  color: var(--text-muted);
 }
 
-.dark-theme .text-gray-500,
-.dark-theme .text-gray-600 {
-  color: var(--text-secondary) !important;
+/* Bordes */
+.border-normal {
+  border-color: var(--border-normal);
 }
 
-.dark-theme .border-gray-300 {
-  border-color: var(--border-color) !important;
+/* Iconos de plataforma */
+.platform-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.375rem;
+  border-radius: 9999px;
+  background-color: var(--bg-badge);
+  color: var(--text-normal);
 }
 
-/* Colores de texto específicos para el footer y nav */
-.footer a {
-  color: var(--footer-text);
+.platform-count {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  padding: 0 0.375rem;
+  border-radius: 0.25rem;
+  background-color: var(--bg-badge);
+  color: var(--text-muted);
 }
 
-.footer a:hover {
-  color: var(--link-hover);
+/* Clases de utilidad para texto */
+
+.text-primary {
+  color: var(--text-normal);
 }
 
-.navbar a {
-  color: var(--navbar-text);
+.text-secondary {
+  color: var(--text-muted);
 }
 
-/* Estilos específicos para el modo oscuro */
-.dark-theme .card {
-  border: 1px solid var(--border-color);
+.text-accent {
+  color: var(--text-accent);
 }
 
-.dark-theme .sidebar {
-  border: 1px solid var(--border-color);
-}
-
-/* Ajustes específicos para clases de Tailwind en modo oscuro */
-.dark-theme .bg-white {
-  background-color: var(--card-bg) !important;
-}
-
-.dark-theme .bg-gray-50,
-.dark-theme .bg-gray-100,
-.dark-theme .bg-gray-200 {
-  background-color: var(--bg-primary) !important;
-}
-
-.dark-theme .border-gray-200,
-.dark-theme .border-gray-300 {
-  border-color: var(--border-color) !important;
-}
-
-/* Anulaciones específicas para componentes de la interfaz */
-.dark-theme input,
-.dark-theme select {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--border-color);
-}
-
-.dark-theme input::placeholder {
-  color: var(--text-secondary);
-}
-
-/* Estilos específicos para la página de detalles en modo oscuro */
-.dark-theme .prose {
-  color: var(--text-primary);
-}
-
-/* Fix para los badges en modo oscuro */
-.dark-theme .bg-indigo-100 {
-  background-color: rgba(129, 140, 248, 0.2) !important;
-}
-
-.dark-theme .text-indigo-800 {
-  color: #a5b4fc !important;
+.text-highlight {
+  color: var(--text-highlight);
+  font-weight: 500;
 }

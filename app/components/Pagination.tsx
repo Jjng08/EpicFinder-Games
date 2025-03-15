@@ -22,7 +22,7 @@ export const PaginationPrevious: React.FC<PaginationPreviousProps> = ({ onClick,
     <button
       onClick={onClick}
       disabled={disabled}
-      className="flex items-center justify-center px-3 h-9 ml-0 text-gray-600 bg-white border border-gray-300 rounded-l-md hover:bg-indigo-50 hover:text-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      className="pagination-btn flex items-center justify-center px-3 h-9 ml-0 rounded-l-md transition-theme disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -43,7 +43,7 @@ export const PaginationNext: React.FC<PaginationNextProps> = ({ onClick, disable
     <button
       onClick={onClick}
       disabled={disabled}
-      className="flex items-center justify-center px-3 h-9 text-gray-600 bg-white border border-gray-300 rounded-r-md hover:bg-indigo-50 hover:text-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      className="pagination-btn flex items-center justify-center px-3 h-9 rounded-r-md transition-theme disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <span>Siguiente</span>
       <svg className="w-3 h-3 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -73,11 +73,12 @@ export const PaginationPage: React.FC<PaginationPageProps> = ({ page, current = 
   return (
     <button
       onClick={onClick}
-      className={`flex items-center justify-center px-3 h-9 leading-tight transition-colors ${
-        current
-          ? 'text-white bg-indigo-600 border border-indigo-600 hover:bg-indigo-700'
-          : 'text-gray-600 bg-white border border-gray-300 hover:bg-indigo-50 hover:text-indigo-700'
+      className={`flex items-center justify-center px-3 h-9 leading-tight transition-theme ${
+        current 
+          ? 'pagination-btn-active' 
+          : 'pagination-btn'
       }`}
+      aria-current={current ? "page" : undefined}
     >
       {page}
     </button>
@@ -87,7 +88,7 @@ export const PaginationPage: React.FC<PaginationPageProps> = ({ page, current = 
 // Componente para el gap en la paginación
 export const PaginationGap: React.FC = () => {
   return (
-    <span className="flex items-center justify-center px-3 h-9 leading-tight text-gray-500 bg-white border border-gray-300">
+    <span className="pagination-btn flex items-center justify-center px-3 h-9 leading-tight">
       ...
     </span>
   );

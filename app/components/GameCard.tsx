@@ -19,7 +19,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
   return (
     <Link 
       to={`/game/${game.id}`}
-      className="block w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300"
+      className="block w-full card rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300"
     >
       <div className="card transition-theme rounded-lg overflow-hidden hover:shadow-md transition-shadow">
         {/* Imagen del juego con overlay */}
@@ -52,33 +52,33 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
 
         {/* Contenido de la tarjeta */}
         <div className="px-5 py-4">
-          <h5 className="text-lg font-semibold tracking-tight text-gray-900 line-clamp-2 min-h-[3.5rem]">
+          <h5 className="text-lg font-semibold tracking-tight line-clamp-2 min-h-[3.5rem]">
             {game.name}
           </h5>
           
           {/* Fecha de lanzamiento si existe */}
           {game.released && (
-            <div className="text-sm text-gray-600 mt-2">
+            <div className="text-sm text-muted mt-2">
               {new Date(game.released).toLocaleDateString()}
             </div>
           )}
 
           {/* Plataformas e información adicional */}
-          <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
+          <div className="flex items-center justify-between mt-3 pt-3 border-t border-normal">
             {/* Plataformas */}
             <div className="flex space-x-1.5">
               {game.parent_platforms?.slice(0, 3).map(platform => (
                 <PlatformIcon key={platform.platform.id} platformId={platform.platform.id} />
               ))}
               {(game.parent_platforms?.length || 0) > 3 && (
-                <span className="text-xs bg-gray-100 text-gray-600 rounded px-1.5 py-0.5 flex items-center">
+                <span className="platform-count">
                   +{game.parent_platforms!.length - 3}
                 </span>
               )}
             </div>
 
-            {/* Botón para ver más */}
-            <span className="text-indigo-800 bg-indigo-100 hover:bg-indigo-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center">
+            {/* Botón para ver más  */}
+            <span className="details-button px-3 py-1.5 text-sm font-medium rounded-lg transition-colors">
               Ver detalles
             </span>
           </div>
@@ -151,7 +151,7 @@ const PlatformIcon = ({ platformId }: { platformId: number }) => {
   }
   
   return (
-    <div className="bg-gray-200 rounded-full p-1.5 text-gray-700" title={`Plataforma ${platformId}`}>
+    <div className="platform-icon" title={`Plataforma ${platformId}`}>
       {icon}
     </div>
   );

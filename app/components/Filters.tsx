@@ -250,7 +250,7 @@ const Filters: React.FC<FiltersProps> = ({ filters, setFilters, sidebarMode = fa
             setLocalFilters(resetFilters);
             setFilters(resetFilters);
           }}
-          className="px-4 py-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 text-sm font-medium rounded-lg transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="btn-action px-4 py-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-800 text-sm font-medium rounded-lg transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Limpiar filtros
         </button>

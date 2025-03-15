@@ -147,7 +147,7 @@ const HomePage: React.FC = () => {
       {/* Botón de filtros para móvil */}
       <button
         onClick={toggleMobileFilters}
-        className="md:hidden w-full mb-4 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition-colors"
+        className="md:hidden w-full mb-4 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-700 dark:hover:bg-indigo-800 text-white py-2 px-4 rounded-lg transition-colors"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 010 2H4a1 1 0 01-1-1zm3 6a1 1 0 011-1h10a1 1 0 010 2H7a1 1 0 01-1-1zm4 6a1 1 0 011-1h4a1 1 0 010 2h-4a1 1 0 01-1-1z" />
@@ -178,31 +178,31 @@ const HomePage: React.FC = () => {
               )}
               
               {filters.year && (
-                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-2.5 py-1 rounded-full">
                   Año: {filters.year}
                 </span>
               )}
               
               {filters.genre && (
-                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-2.5 py-1 rounded-full">
                   Género: {filters.genre}
                 </span>
               )}
               
               {filters.platform && (
-                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-2.5 py-1 rounded-full">
                   Plataforma: {filters.platform}
                 </span>
               )}
               
               {filters.tag && (
-                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-2.5 py-1 rounded-full">
                   Tag: {filters.tag}
                 </span>
               )}
               
               {filters.developer && (
-                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-2.5 py-1 rounded-full">
                   Desarrollador: {filters.developer}
                 </span>
               )}
@@ -230,13 +230,13 @@ const HomePage: React.FC = () => {
               
               {games.length > 0 && (
                 <div className="flex flex-col items-center my-8">
-                  {/* Texto informativo */}
-                  <span className="text-sm text-gray-700 mb-3">
-                    Mostrando <span className="font-semibold text-gray-900">{(page - 1) * pageSize + 1}</span> a{" "}
-                    <span className="font-semibold text-gray-900">
+                  {/* Texto informativo - Corregido para modo oscuro */}
+                  <span className="text-sm text-secondary mb-3 transition-theme">
+                    Mostrando <span className="text-highlight transition-theme">{(page - 1) * pageSize + 1}</span> a{" "}
+                    <span className="text-highlight transition-theme">
                       {Math.min(page * pageSize, (totalPages * pageSize))}
                     </span>{" "}
-                    de <span className="font-semibold text-gray-900">{totalPages * pageSize}</span> juegos
+                    de <span className="text-highlight transition-theme">{totalPages * pageSize}</span> juegos
                   </span>
                   
                   {/* Sistema de paginación mejorado */}
@@ -257,7 +257,7 @@ const HomePage: React.FC = () => {
         <aside className={`w-full md:w-72 lg:w-80 order-1 md:order-2 ${showMobileFilters ? 'block' : 'hidden md:block'}`}>
           <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             {/* Contenedor unificado con cuadro redondeado */}
-            <div className="sidebar rounded-lg p-5">
+            <div className="sidebar rounded-lg shadow-md p-5 transition-theme border border-gray-200 dark:border-gray-700">
               {/* Sección de búsqueda */}
               <div className="mb-6">
                 <h2 className="text-lg font-semibold mb-4 flex items-center">

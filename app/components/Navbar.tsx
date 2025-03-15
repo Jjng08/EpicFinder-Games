@@ -38,24 +38,24 @@ const Navbar: React.FC = () => {
               <Link
                 to="/"
                 className={`${
-                  isActive('/') ? 'border-b-2 border-indigo-500 font-medium' : ''
-                } px-3 py-2 rounded-md text-sm transition-colors`}
+                  isActive('/') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
+                } px-3 py-2 rounded-md text-sm transition-colors hover:border-b-2 hover:border-indigo-300`}
               >
                 Inicio
               </Link>
               <Link
                 to="/top-games"
                 className={`${
-                  isActive('/top-games') ? 'border-b-2 border-indigo-500 font-medium' : ''
-                } px-3 py-2 rounded-md text-sm transition-colors`}
+                  isActive('/top-games') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
+                } px-3 py-2 rounded-md text-sm transition-colors hover:border-b-2 hover:border-indigo-300`}
               >
                 Top Juegos
               </Link>
               <Link
                 to="/new-releases"
                 className={`${
-                  isActive('/new-releases') ? 'border-b-2 border-indigo-500 font-medium' : ''
-                } px-3 py-2 rounded-md text-sm transition-colors`}
+                  isActive('/new-releases') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
+                } px-3 py-2 rounded-md text-sm transition-colors hover:border-b-2 hover:border-indigo-300`}
               >
                 Nuevos Lanzamientos
               </Link>
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
                 href="https://rawg.io/apidocs"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3 py-2 rounded-md text-sm transition-colors"
+                className="px-3 py-2 rounded-md text-sm transition-colors hover:border-b-2 hover:border-indigo-300"
               >
                 API Docs
               </a>
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
             {/* Botón de tema */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full mr-2 hover:bg-opacity-20 hover:bg-gray-500 focus:outline-none transition-colors"
+              className="theme-toggle-btn p-2 rounded-full mr-2 focus:outline-none transition-colors"
               aria-label="Cambiar tema"
             >
               {theme === 'dark' ? (
@@ -92,7 +92,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md md:hidden focus:outline-none"
+              className="inline-flex items-center justify-center p-2 rounded-md md:hidden focus:outline-none theme-toggle-btn"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -112,13 +112,13 @@ const Navbar: React.FC = () => {
       </div>
       
       {/* Menú móvil */}
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`} id="mobile-menu">
+      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden mobile-menu`} id="mobile-menu">
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           <Link
             to="/"
             className={`${
-              isActive('/') ? 'border-b-2 border-indigo-500 font-medium' : ''
-            } block px-3 py-2 rounded-md text-base transition-colors`}
+              isActive('/') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
+            } block px-3 py-2 rounded-md text-base transition-colors hover:bg-opacity-20 hover:bg-gray-200`}
             onClick={() => setIsMenuOpen(false)}
           >
             Inicio
@@ -126,8 +126,8 @@ const Navbar: React.FC = () => {
           <Link
             to="/top-games"
             className={`${
-              isActive('/top-games') ? 'border-b-2 border-indigo-500 font-medium' : ''
-            } block px-3 py-2 rounded-md text-base transition-colors`}
+              isActive('/top-games') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
+            } block px-3 py-2 rounded-md text-base transition-colors hover:bg-opacity-20 hover:bg-gray-200`}
             onClick={() => setIsMenuOpen(false)}
           >
             Top Juegos
@@ -135,8 +135,8 @@ const Navbar: React.FC = () => {
           <Link
             to="/new-releases"
             className={`${
-              isActive('/new-releases') ? 'border-b-2 border-indigo-500 font-medium' : ''
-            } block px-3 py-2 rounded-md text-base transition-colors`}
+              isActive('/new-releases') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
+            } block px-3 py-2 rounded-md text-base transition-colors hover:bg-opacity-20 hover:bg-gray-200`}
             onClick={() => setIsMenuOpen(false)}
           >
             Nuevos Lanzamientos
@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
             href="https://rawg.io/apidocs"
             target="_blank"
             rel="noopener noreferrer"
-            className="block px-3 py-2 rounded-md text-base transition-colors"
+            className="block px-3 py-2 rounded-md text-base transition-colors hover:bg-opacity-20 hover:bg-gray-200"
             onClick={() => setIsMenuOpen(false)}
           >
             API Docs

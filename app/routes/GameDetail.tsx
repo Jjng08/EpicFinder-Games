@@ -98,7 +98,7 @@ const PlatformIcon = ({ platformId }: { platformId: number }) => {
   }
   
   return (
-    <span className="text-white" title={`Plataforma ${platformId}`}>
+    <span className="text-white transition-theme" title={`Plataforma ${platformId}`}>
       {icon}
     </span>
   );
@@ -203,7 +203,7 @@ const GameDetailPage: React.FC = () => {
   return (
     <div className="my-8">
       <div className="mb-6">
-        <Link to="/" className="text-blue-600 hover:underline flex items-center">
+        <Link to="/" className="text-blue-600 dark:text-blue-400 hover:underline flex items-center transition-theme">
           <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
@@ -211,7 +211,7 @@ const GameDetailPage: React.FC = () => {
         </Link>
       </div>
       
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="bg-white game-detail-card rounded-xl shadow-lg overflow-hidden transition-theme">
         {/* Hero section with game image */}
         <div className="relative">
           {game.background_image && (
@@ -226,11 +226,11 @@ const GameDetailPage: React.FC = () => {
               <div className="absolute bottom-0 left-0 w-full p-6">
                 <div className="flex flex-col md:flex-row md:items-end justify-between">
                   <div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{game.name}</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 transition-theme">{game.name}</h1>
                     
                     <div className="flex flex-wrap items-center gap-3 text-white">
                       {game.released && (
-                        <span className="flex items-center text-sm">
+                        <span className="flex items-center text-sm transition-theme">
                           <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                           </svg>
@@ -255,7 +255,7 @@ const GameDetailPage: React.FC = () => {
                         {[...Array(5)].map((_, i) => (
                           <svg 
                             key={i} 
-                            className={`w-5 h-5 ${i < Math.round(game.rating) ? 'text-yellow-300' : 'text-gray-500'}`} 
+                            className={`w-5 h-5 ${i < Math.round(game.rating) ? 'text-yellow-300' : 'text-gray-500'} transition-theme`} 
                             fill="currentColor" 
                             viewBox="0 0 20 20"
                           >
@@ -263,7 +263,7 @@ const GameDetailPage: React.FC = () => {
                           </svg>
                         ))}
                       </div>
-                      <span className="ml-2 text-white font-medium">{game.rating.toFixed(1)}</span>
+                      <span className="ml-2 text-white font-medium transition-theme">{game.rating.toFixed(1)}</span>
                     </div>
                     
                     {/* Metacritic score */}
@@ -272,7 +272,7 @@ const GameDetailPage: React.FC = () => {
                         <span className={`inline-flex items-center justify-center ${getMetacriticColor(game.metacritic)} w-10 h-10 rounded-full text-sm font-bold`}>
                           {game.metacritic}
                         </span>
-                        <span className="ml-1 text-white text-sm">Metacritic</span>
+                        <span className="ml-1 text-white text-sm transition-theme">Metacritic</span>
                       </div>
                     )}
                   </div>
@@ -289,7 +289,7 @@ const GameDetailPage: React.FC = () => {
               {/* Trailer section */}
               {trailers.length > 0 ? (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">Trailer</h2>
+                  <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 transition-theme">Trailer</h2>
                   
                   <div className="bg-black rounded-lg overflow-hidden">
                     {activeTrailer && (
@@ -342,7 +342,8 @@ const GameDetailPage: React.FC = () => {
                 </div>
               ) : screenshots.length > 0 ? (
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-800 mb-4">Capturas de pantalla</h2>
+                  <h2 className="text-2xl font-bold game-detail-text mb-4 transition-theme">
+                    Capturas de pantalla</h2>
                   
                   <div className="bg-black rounded-lg overflow-hidden">
                     {activeScreenshot && (
@@ -377,12 +378,12 @@ const GameDetailPage: React.FC = () => {
                   )}
                 </div>
               ) : (
-                <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 text-center">
-                  <svg className="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700 text-center transition-theme">
+                  <svg className="w-16 h-16 mx-auto text-gray-400 dark:text-gray-500 transition-theme" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                   </svg>
-                  <h3 className="mt-4 text-lg font-medium text-gray-900">No hay medios disponibles</h3>
-                  <p className="mt-2 text-gray-600">
+                  <h3 className="mt-4 text-lg font-medium text-gray-900 dark:text-gray-100 transition-theme">No hay medios disponibles</h3>
+                  <p className="mt-2 text-gray-600 dark:text-gray-400 transition-theme">
                     No se encontraron trailers ni capturas de pantalla para este juego.
                   </p>
                   {game.name && (
@@ -390,7 +391,7 @@ const GameDetailPage: React.FC = () => {
                       href={`https://www.google.com/search?q=${encodeURIComponent(game.name + ' game screenshots')}&tbm=isch`}
                       target="_blank"
                       rel="noopener noreferrer" 
-                      className="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-theme"
                     >
                       Buscar imágenes en Google
                       <svg className="ml-2 -mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -404,10 +405,10 @@ const GameDetailPage: React.FC = () => {
               {/* Description */}
               {game.description_raw && (
                 <div>
-                  <h2 className="text-2xl font-semibold mb-4">Descripción</h2>
-                  <div className="prose max-w-none text-gray-700">
+                  <h2 className="text-2xl font-semibold game-detail-text mb-4 transition-theme">Descripción</h2>
+                  <div className="prose max-w-none game-detail-secondary-text transition-theme">
                     {game.description_raw.split('\n').map((paragraph, index) => (
-                      paragraph.trim() ? <p key={index} className="mb-3">{paragraph}</p> : null
+                      paragraph.trim() ? <p key={index} className="mb-3 transition-theme">{paragraph}</p> : null
                     ))}
                   </div>
                 </div>
@@ -417,19 +418,19 @@ const GameDetailPage: React.FC = () => {
             {/* Right column - Metadata */}
             <div className="space-y-6">
               {/* Game details card */}
-              <div className="card p-6 rounded-lg shadow-sm">
-                <h3 className="font-semibold text-lg mb-4 pb-2 border-b border-gray-200">Detalles</h3>
+              <div className="game-detail-bg p-6 rounded-lg shadow-sm transition-theme">
+                <h3 className="font-semibold text-lg mb-4 pb-2 border-b game-detail-border game-detail-text transition-theme">Detalles</h3>
                 
-                <div className="space-y-3">
+                <div className="space-y-3 transition-theme">
                   {/* Platforms */}
                   {game.platforms && game.platforms.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">Plataformas</h4>
+                      <h4 className="text-sm font-medium game-detail-text transition-theme">Plataformas</h4>
                       <div className="flex flex-wrap gap-1 mt-1">
                         {game.platforms.map(p => (
                           <span 
                             key={p.platform.id} 
-                            className="bg-gray-200 text-gray-800 text-xs px-2 py-1 rounded"
+                            className="tag transition-theme"
                           >
                             {p.platform.name}
                           </span>
@@ -441,42 +442,42 @@ const GameDetailPage: React.FC = () => {
                   {/* Release date */}
                   {game.released && (
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">Fecha de lanzamiento</h4>
-                      <p className="text-gray-800">{new Date(game.released).toLocaleDateString()}</p>
+                      <h4 className="text-sm font-medium game-detail-text transition-theme">Fecha de lanzamiento</h4>
+                      <p className="game-detail-secondary-text transition-theme">{new Date(game.released).toLocaleDateString()}</p>
                     </div>
                   )}
                   
                   {/* Developers */}
                   {game.developers && game.developers.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">Desarrolladores</h4>
-                      <p className="text-gray-800">{game.developers.map(dev => dev.name).join(', ')}</p>
+                      <h4 className="text-sm font-medium game-detail-text transition-theme">Desarrolladores</h4>
+                      <p className="game-detail-secondary-text transition-theme">{game.developers.map(dev => dev.name).join(', ')}</p>
                     </div>
                   )}
                   
                   {/* Publishers */}
                   {game.publishers && game.publishers.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-medium text-gray-500">Publicadores</h4>
-                      <p className="text-gray-800">{game.publishers.map(pub => pub.name).join(', ')}</p>
+                      <h4 className="text-sm font-medium game-detail-text transition-theme">Publicadores</h4>
+                      <p className="game-detail-secondary-text transition-theme">{game.publishers.map(pub => pub.name).join(', ')}</p>
                     </div>
                   )}
                 </div>
               </div>
               
               {/* Genres & Tags */}
-              <div className="card p-6 rounded-lg shadow-sm">
-                <h3 className="font-semibold text-lg mb-4 pb-2 border-b border-gray-200">Categorías</h3>
+              <div className="game-detail-card p-6 rounded-lg shadow-sm transition-theme">
+                <h3 className="font-semibold text-lg mb-4 pb-2 border-b game-detail-border transition-theme">Categorías</h3>
                 
                 {/* Genres */}
                 {game.genres && game.genres.length > 0 && (
                   <div className="mb-4">
-                    <h4 className="text-sm font-medium text-gray-500 mb-2">Géneros</h4>
+                    <h4 className="text-sm font-medium game-detail-tag-text mb-2 transition-theme">Géneros</h4>
                     <div className="flex flex-wrap gap-2">
                       {game.genres.map(genre => (
                         <span 
                           key={genre.id} 
-                          className="badge rounded-full px-3 py-1 text-xs"
+                          className="badge transition-theme"
                         >
                           {genre.name}
                         </span>
@@ -488,18 +489,18 @@ const GameDetailPage: React.FC = () => {
                 {/* Tags */}
                 {game.tags && game.tags.length > 0 && (
                   <div>
-                    <h4 className="text-sm font-medium text-gray-500 mb-2">Tags</h4>
+                    <h4 className="text-sm font-medium game-detail-text mb-2 transition-theme">Tags</h4>
                     <div className="flex flex-wrap gap-2">
                       {game.tags.slice(0, 10).map(tag => (
                         <span 
                           key={tag.id} 
-                          className="bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded"
+                          className="tag transition-theme"
                         >
                           {tag.name}
                         </span>
                       ))}
                       {game.tags.length > 10 && (
-                        <span className="text-xs text-gray-500">
+                        <span className="text-xs text-gray-500 dark:text-gray-400 transition-theme">
                           +{game.tags.length - 10} más
                         </span>
                       )}
