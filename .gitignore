@@ -1,0 +1,13 @@
+.DS_Store
+.env
+/node_modules/
+
+# React Router
+/.react-router/
+/build/
+
+
+echo ".env" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo "build/" >> .gitignore
+echo "dockerignore" >> .gitignore
