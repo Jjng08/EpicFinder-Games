@@ -1,0 +1,178 @@
+:root, .light-theme {
+  /* Variables del tema claro */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-accent: #dfe8f0;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-accent: #4f46e5;
+  --border-color: #e5e7eb;
+  --card-bg: #ffffff;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --badge-bg: rgba(79, 70, 229, 0.1);
+  --badge-text: #4f46e5;
+  --navbar-text: #1f2937;
+  --footer-text: #1f2937;
+  --link-text: #4f46e5;
+  --link-hover: #4338ca;
+  --sidebar-bg: #ffffff;
+  --color-grid-lines: rgba(223, 232, 240, 0.1);
+  --color-radial-gradient: rgba(223, 232, 240, 0.3);
+}
+
+.dark-theme {
+  /* Variables del tema oscuro - ajustadas para mejor contraste */
+  --bg-primary: #1e293b;       /* Fondo principal más claro */
+  --bg-secondary: #0f172a;     /* Fondo secundario (body) */
+  --bg-accent: #0f172a;        /* Navbar y footer más oscuros */
+  --text-primary: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --text-accent: #818cf8;
+  --border-color: #334155;
+  --card-bg: #1e293b;          /* Fondo de tarjetas más claro que el body */
+  --card-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --badge-bg: rgba(129, 140, 248, 0.2);
+  --badge-text: #a5b4fc;
+  --navbar-text: #f3f4f6;
+  --footer-text: #f3f4f6;
+  --link-text: #818cf8;
+  --link-hover: #a5b4fc;
+  --sidebar-bg: #1e293b;       /* Fondo del sidebar igual que las tarjetas */
+  --color-grid-lines: rgba(75, 85, 99, 0.1);
+  --color-radial-gradient: rgba(75, 85, 99, 0.3);
+}
+
+/* Estilos base que usan las variables */
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.bg-pattern {
+  background-color: var(--bg-primary);
+  background-image: linear-gradient(to right, var(--color-grid-lines) 1px, transparent 1px), 
+                   linear-gradient(to bottom, var(--color-grid-lines) 1px, transparent 1px);
+}
+
+.bg-pattern-radial {
+  background: radial-gradient(circle 500px at 50% 200px, var(--color-radial-gradient), transparent);
+}
+
+.navbar {
+  background-color: var(--bg-accent);
+  color: var(--navbar-text);
+}
+
+.footer {
+  background-color: var(--bg-accent);
+  color: var(--footer-text);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  border-color: var(--border-color);
+}
+
+.badge {
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+a {
+  color: var(--link-text);
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+/* Transiciones suaves */
+.transition-theme {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ajustes específicos para modo oscuro */
+.dark-theme .text-gray-700,
+.dark-theme .text-gray-800,
+.dark-theme .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.dark-theme .text-gray-500,
+.dark-theme .text-gray-600 {
+  color: var(--text-secondary) !important;
+}
+
+.dark-theme .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+/* Colores de texto específicos para el footer y nav */
+.footer a {
+  color: var(--footer-text);
+}
+
+.footer a:hover {
+  color: var(--link-hover);
+}
+
+.navbar a {
+  color: var(--navbar-text);
+}
+
+/* Estilos específicos para el modo oscuro */
+.dark-theme .card {
+  border: 1px solid var(--border-color);
+}
+
+.dark-theme .sidebar {
+  border: 1px solid var(--border-color);
+}
+
+/* Ajustes específicos para clases de Tailwind en modo oscuro */
+.dark-theme .bg-white {
+  background-color: var(--card-bg) !important;
+}
+
+.dark-theme .bg-gray-50,
+.dark-theme .bg-gray-100,
+.dark-theme .bg-gray-200 {
+  background-color: var(--bg-primary) !important;
+}
+
+.dark-theme .border-gray-200,
+.dark-theme .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+/* Anulaciones específicas para componentes de la interfaz */
+.dark-theme input,
+.dark-theme select {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark-theme input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Estilos específicos para la página de detalles en modo oscuro */
+.dark-theme .prose {
+  color: var(--text-primary);
+}
+
+/* Fix para los badges en modo oscuro */
+.dark-theme .bg-indigo-100 {
+  background-color: rgba(129, 140, 248, 0.2) !important;
+}
+
+.dark-theme .text-indigo-800 {
+  color: #a5b4fc !important;
+}

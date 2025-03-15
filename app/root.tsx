@@ -9,10 +9,13 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import "./styles/theme.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/footer";
+import { ThemeProvider } from './context/ThemeContext';
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", href: "/favicon.svg" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",
@@ -34,19 +37,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen flex flex-col relative bg-gray-50">
-        {/* Solo actualizar los colores del patrón de fondo */}
-        <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#dfe8f010_1px,transparent_1px),linear-gradient(to_bottom,#dfe8f010_1px,transparent_1px)] bg-[size:20px_20px]">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#dfe8f030,transparent)]"></div>
+      <body className="transition-theme min-h-screen flex flex-col">
+        {/* Patrón de fondo sutil usando variables CSS */}
+        <div className="fixed inset-0 -z-10 h-full w-full bg-pattern bg-[size:20px_20px]">
+          <div className="absolute bottom-0 left-0 right-0 top-0 bg-pattern-radial"></div>
         </div>
         
-        <Navbar />
-        <main className="container mx-auto px-4 py-6 flex-grow">
-          {children}
-        </main>
+        <ThemeProvider>
+          <Navbar />
+          <main className="container mx-auto px-4 py-6 flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
-        <Footer />
       </body>
     </html>
   );

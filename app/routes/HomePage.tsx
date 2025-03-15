@@ -160,15 +160,15 @@ const HomePage: React.FC = () => {
         <div className="flex-1 order-2 md:order-1">
           {/* Resumen de resultados y filtros activos - visible solo cuando hay filtros */}
           {(filters.year || filters.genre || filters.platform || filters.tag || filters.developer || searchQuery) && (
-            <div className="bg-indigo-50 p-3 rounded-lg mb-4 flex flex-wrap items-center gap-2">
-              <span className="text-sm text-indigo-700 font-medium">Filtros aplicados:</span>
+            <div className="badge p-3 rounded-lg mb-4 flex flex-wrap items-center gap-2">
+              <span className="text-sm font-medium">Filtros aplicados:</span>
               
               {searchQuery && (
-                <span className="inline-flex items-center bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center badge text-xs font-medium px-2.5 py-1 rounded-full">
                   Búsqueda: {searchQuery}
                   <button 
                     onClick={() => setSearchQuery('')} 
-                    className="ml-1.5 text-indigo-600 hover:text-indigo-900"
+                    className="ml-1.5 hover:text-opacity-70"
                   >
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -221,9 +221,9 @@ const HomePage: React.FC = () => {
                     <GameCard key={game.id} game={game} />
                   ))
                 ) : (
-                  <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 bg-gray-100 rounded-lg">
-                    <p className="text-lg text-gray-600">No se encontraron juegos con los criterios especificados.</p>
-                    <p className="mt-2 text-gray-500">Intenta con diferentes filtros o términos de búsqueda.</p>
+                  <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-12 card rounded-lg">
+                    <p className="text-lg">No se encontraron juegos con los criterios especificados.</p>
+                    <p className="mt-2">Intenta con diferentes filtros o términos de búsqueda.</p>
                   </div>
                 )}
               </div>
@@ -257,10 +257,10 @@ const HomePage: React.FC = () => {
         <aside className={`w-full md:w-72 lg:w-80 order-1 md:order-2 ${showMobileFilters ? 'block' : 'hidden md:block'}`}>
           <div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
             {/* Contenedor unificado con cuadro redondeado */}
-            <div className="bg-white shadow-sm rounded-lg p-5 border border-gray-100">
+            <div className="sidebar rounded-lg p-5">
               {/* Sección de búsqueda */}
               <div className="mb-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <h2 className="text-lg font-semibold mb-4 flex items-center">
                   <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
@@ -270,11 +270,11 @@ const HomePage: React.FC = () => {
               </div>
               
               {/* Divisor */}
-              <div className="border-b border-gray-200 my-4"></div>
+              <div className="border-b border-gray-200 dark:border-gray-700 my-4"></div>
               
               {/* Sección de filtros */}
               <div>
-                <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                <h2 className="text-lg font-semibold mb-4 flex items-center">
                   <svg className="w-5 h-5 mr-2 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 010 2H4a1 1 0 01-1-1zm3 6a1 1 0 011-1h10a1 1 0 010 2H7a1 1 0 01-1-1zm4 6a1 1 0 011-1h4a1 1 0 010 2h-4a1 1 0 01-1-1z" />
                   </svg>

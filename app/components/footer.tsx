@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer className="bg-[#dfe8f0] text-gray mt-auto">
+        <footer className="footer py-6 transition-theme">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <Link to="/" className="flex items-center mb-4 sm:mb-0 space-x-3">
                         <svg 
-                            className="h-8 w-8 text-blue-500" 
+                            className="h-8 w-8 text-indigo-600" 
                             fill="none" 
                             viewBox="0 0 24 24" 
                             stroke="currentColor"
@@ -22,7 +22,7 @@ export default function Footer() {
                         </svg>
                         <span className="self-center text-2xl font-semibold whitespace-nowrap">GameFinder</span>
                     </Link>
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-black-200 sm:mb-0">
+                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0">
                         <li>
                             <Link to="/" className="hover:text-indigo-600 me-4 md:me-6">Inicio</Link>
                         </li>
@@ -37,8 +37,8 @@ export default function Footer() {
                         </li>
                     </ul>
                 </div>
-                <hr className="my-6 border-gray-700 sm:mx-auto lg:my-8" />
-                <span className="block text-sm text-black-200 sm:text-center">
+                <hr className="my-6 border-gray-300 sm:mx-auto lg:my-8" />
+                <span className="block text-sm sm:text-center">
                     © {new Date().getFullYear()} <Link to="/" className="hover:underline">GameFinder™</Link>. Todos los derechos reservados.
                 </span>
             </div>

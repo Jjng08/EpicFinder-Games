@@ -417,7 +417,7 @@ const GameDetailPage: React.FC = () => {
             {/* Right column - Metadata */}
             <div className="space-y-6">
               {/* Game details card */}
-              <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="card p-6 rounded-lg shadow-sm">
                 <h3 className="font-semibold text-lg mb-4 pb-2 border-b border-gray-200">Detalles</h3>
                 
                 <div className="space-y-3">
@@ -465,7 +465,7 @@ const GameDetailPage: React.FC = () => {
               </div>
               
               {/* Genres & Tags */}
-              <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="card p-6 rounded-lg shadow-sm">
                 <h3 className="font-semibold text-lg mb-4 pb-2 border-b border-gray-200">Categorías</h3>
                 
                 {/* Genres */}
@@ -476,7 +476,7 @@ const GameDetailPage: React.FC = () => {
                       {game.genres.map(genre => (
                         <span 
                           key={genre.id} 
-                          className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+                          className="badge rounded-full px-3 py-1 text-xs"
                         >
                           {genre.name}
                         </span>

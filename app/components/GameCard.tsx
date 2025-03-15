@@ -21,65 +21,67 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
       to={`/game/${game.id}`}
       className="block w-full bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300"
     >
-      {/* Imagen del juego con overlay */}
-      <div className="relative overflow-hidden rounded-t-lg">
-        {game.background_image ? (
-          <img 
-            src={game.background_image} 
-            alt={game.name} 
-            className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
-            <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+      <div className="card transition-theme rounded-lg overflow-hidden hover:shadow-md transition-shadow">
+        {/* Imagen del juego con overlay */}
+        <div className="relative overflow-hidden rounded-t-lg">
+          {game.background_image ? (
+            <img 
+              src={game.background_image} 
+              alt={game.name} 
+              className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            />
+          ) : (
+            <div className="w-full h-48 bg-gray-300 flex items-center justify-center">
+              <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+          )}
+          
+          {/* Badge de Metacritic */}
+          {game.metacritic && (
+            <span className={`absolute top-2 right-2 ${getMetacriticColor(game.metacritic)} text-xs font-semibold px-2.5 py-1 rounded`}>
+              {game.metacritic}
+            </span>
+          )}
+
+          {/* Overlay con gradiente para mejor legibilidad */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent opacity-60"></div>
+        </div>
+
+        {/* Contenido de la tarjeta */}
+        <div className="px-5 py-4">
+          <h5 className="text-lg font-semibold tracking-tight text-gray-900 line-clamp-2 min-h-[3.5rem]">
+            {game.name}
+          </h5>
+          
+          {/* Fecha de lanzamiento si existe */}
+          {game.released && (
+            <div className="text-sm text-gray-600 mt-2">
+              {new Date(game.released).toLocaleDateString()}
+            </div>
+          )}
+
+          {/* Plataformas e información adicional */}
+          <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
+            {/* Plataformas */}
+            <div className="flex space-x-1.5">
+              {game.parent_platforms?.slice(0, 3).map(platform => (
+                <PlatformIcon key={platform.platform.id} platformId={platform.platform.id} />
+              ))}
+              {(game.parent_platforms?.length || 0) > 3 && (
+                <span className="text-xs bg-gray-100 text-gray-600 rounded px-1.5 py-0.5 flex items-center">
+                  +{game.parent_platforms!.length - 3}
+                </span>
+              )}
+            </div>
+
+            {/* Botón para ver más */}
+            <span className="text-indigo-800 bg-indigo-100 hover:bg-indigo-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center">
+              Ver detalles
+            </span>
           </div>
-        )}
-        
-        {/* Badge de Metacritic */}
-        {game.metacritic && (
-          <span className={`absolute top-2 right-2 ${getMetacriticColor(game.metacritic)} text-xs font-semibold px-2.5 py-1 rounded`}>
-            {game.metacritic}
-          </span>
-        )}
-
-        {/* Overlay con gradiente para mejor legibilidad */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent opacity-60"></div>
-      </div>
-
-      {/* Contenido de la tarjeta */}
-      <div className="px-5 py-4">
-        <h5 className="text-lg font-semibold tracking-tight text-gray-900 line-clamp-2 min-h-[3.5rem]">
-          {game.name}
-        </h5>
-        
-        {/* Fecha de lanzamiento si existe */}
-        {game.released && (
-          <div className="text-sm text-gray-600 mt-2">
-            {new Date(game.released).toLocaleDateString()}
-          </div>
-        )}
-
-        {/* Plataformas e información adicional */}
-        <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-200">
-          {/* Plataformas */}
-          <div className="flex space-x-1.5">
-            {game.parent_platforms?.slice(0, 3).map(platform => (
-              <PlatformIcon key={platform.platform.id} platformId={platform.platform.id} />
-            ))}
-            {(game.parent_platforms?.length || 0) > 3 && (
-              <span className="text-xs bg-gray-100 text-gray-600 rounded px-1.5 py-0.5 flex items-center">
-                +{game.parent_platforms!.length - 3}
-              </span>
-            )}
-          </div>
-
-          {/* Botón para ver más */}
-          <span className="text-indigo-800 bg-indigo-100 hover:bg-indigo-200 font-medium rounded-lg text-xs px-3 py-1.5 text-center">
-            Ver detalles
-          </span>
         </div>
       </div>
     </Link>
