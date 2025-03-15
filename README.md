@@ -65,6 +65,24 @@ La interfaz se adapta a diferentes tamaños de pantalla:
 Dispositivos móviles: Visualización optimizada para pantallas pequeñas
 Tablets: Layout adaptado para aprovechar el espacio adicional
 Escritorio: Experiencia completa con visualización de múltiples elementos en pantalla
+
+Aspectos Técnicos Destacables 💻
+TypeScript
+
+Uso adecuado de interfaces y tipos
+Tipado fuerte en componentes y funciones
+CSS Variables y Theming
+
+Sistema de variables CSS bien estructurado
+Manejo consistente de colores y estilos
+Manejo de API
+
+Funciones para interactuar con la API bien estructuradas
+Gestión de errores y fallbacks
+Componentes Reutilizables
+
+Los componentes como Pagination, GameCard, etc. están diseñados para ser reutilizables
+
 📦 Instalación y uso
 Requisitos previos
 Node.js (v14.0.0 o superior)

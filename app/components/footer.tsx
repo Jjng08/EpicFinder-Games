@@ -20,7 +20,7 @@ export default function Footer() {
                                 d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
                             />
                         </svg>
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap">GameFinder</span>
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap">EpicFinder</span>
                     </Link>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0">
                         <li>
@@ -39,7 +39,7 @@ export default function Footer() {
                 </div>
                 <hr className="my-6 border-gray-300 sm:mx-auto lg:my-8" />
                 <span className="block text-sm sm:text-center">
-                    © {new Date().getFullYear()} <Link to="/" className="hover:underline">GameFinder™</Link>. Todos los derechos reservados.
+                    © {new Date().getFullYear()} <Link to="/" className="hover:underline">EpicFinder™</Link>. Todos los derechos reservados.
                 </span>
             </div>
         </footer>
