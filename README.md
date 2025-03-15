@@ -87,20 +87,20 @@ EpicFinder es una aplicación desarrollada como parte de una prueba técnica que
    cd EpicFinder-Games
 
 
-Instalar dependencias:
+2. **Instalar dependencias:**
+    ```bash
+    npm install
 
-npm install
+3. **Configurar variables de enterno**
+    °crea archivo .env en la raiz del proyecto
+    ```bash
+    REACT_RAWG_API_KEY=tu_api_key_aca
 
+4. **Iniciar en modo desarrollo:**
+    ```bash
+    npm run dev
 
-Crear archivo .env en la raíz del proyecto:
-
-REACT_RAWG_API_KEY=tu_api_key_aquí
-
-Iniciar en modo desarrollo:
-
-npm run dev
-
-Abrir http://localhost:5173 en el navegador
+5. **Abrir Abrir http://localhost:5173 en el navegador**
 
 🔍 Decisiones Técnicas
 TypeScript sobre JavaScript: Elegido para mejorar la mantenibilidad y confiabilidad del código mediante tipado estático.
