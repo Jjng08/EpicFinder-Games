@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
                   d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"
                 />
               </svg>
-              <span className="ml-2 text-xl font-bold">GameFinder</span>
+              <span className="ml-2 text-xl font-bold">EpicFinder</span>
             </Link>
             
             <div className="hidden md:ml-6 md:flex md:space-x-4">
@@ -44,20 +44,12 @@ const Navbar: React.FC = () => {
                 Inicio
               </Link>
               <Link
-                to="/top-games"
+                to="/acerca-de"
                 className={`${
                   isActive('/top-games') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
                 } px-3 py-2 rounded-md text-sm transition-colors hover:border-b-2 hover:border-indigo-300`}
               >
-                Top Juegos
-              </Link>
-              <Link
-                to="/new-releases"
-                className={`${
-                  isActive('/new-releases') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
-                } px-3 py-2 rounded-md text-sm transition-colors hover:border-b-2 hover:border-indigo-300`}
-              >
-                Nuevos Lanzamientos
+                Acerca De
               </Link>
               <a
                 href="https://rawg.io/apidocs"

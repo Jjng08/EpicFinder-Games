@@ -27,10 +27,10 @@ export default function Footer() {
                             <Link to="/" className="hover:text-indigo-600 me-4 md:me-6">Inicio</Link>
                         </li>
                         <li>
-                            <Link to="/top-games" className="hover:text-indigo-600 me-4 md:me-6">Top Juegos</Link>
+                            <Link to="/acerca-de" className="hover:text-indigo-600 me-4 md:me-6">Acerca De</Link>
                         </li>
                         <li>
-                            <Link to="/new-releases" className="hover:text-indigo-600 me-4 md:me-6">Nuevos Lanzamientos</Link>
+                            <a href='https://github.com/Jjng08/EpicFinder-Games' target='_blank' className="hover:text-indigo-600 me-4 md:me-6">GitHub</a>
                         </li>
                         <li>
                             <a href="https://rawg.io/apidocs" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600">API Docs</a>
