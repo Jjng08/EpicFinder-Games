@@ -34,7 +34,7 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
         const data = await getDevelopers(1, 10, searchTerm);
         setDevelopers(data.results || []);
       } catch (error) {
-        console.error('Error fetching developers:', error);
+        // Eliminado el console.error
         setDevelopers([]);
       } finally {
         setIsLoading(false);
@@ -57,7 +57,7 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
             setSelectedDeveloper(developer);
           }
         } catch (error) {
-          console.error('Error fetching developer info:', error);
+          // Eliminado el console.error
         }
       } else if (!value) {
         setSelectedDeveloper(null);
@@ -99,10 +99,10 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
   
   return (
     <div>
-      <label className="block text-sm font-medium text-gray-700 mb-1">Desarrollador</label>
+      <label className="block text-sm font-medium text-primary transition-theme mb-1">Desarrollador</label>
       
       {selectedDeveloper ? (
-        <div className="flex items-center bg-white border border-gray-300 rounded-lg p-2">
+        <div className="flex items-center card border transition-theme rounded-lg p-2">
           {selectedDeveloper.image_background && (
             <div className="flex-shrink-0 h-10 w-10 mr-3">
               <img 
@@ -113,14 +113,14 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
             </div>
           )}
           <div className="flex-1">
-            <div className="text-sm font-medium text-gray-900">{selectedDeveloper.name}</div>
+            <div className="text-sm font-medium text-primary transition-theme">{selectedDeveloper.name}</div>
             {selectedDeveloper.games_count && (
-              <div className="text-xs text-gray-500">{selectedDeveloper.games_count} juegos</div>
+              <div className="text-xs text-secondary transition-theme">{selectedDeveloper.games_count} juegos</div>
             )}
           </div>
           <button 
             onClick={handleClear}
-            className="ml-2 text-gray-400 hover:text-gray-600"
+            className="ml-2 text-secondary hover:text-primary transition-theme"
           >
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -136,11 +136,11 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
               value={searchTerm}
               onChange={handleInputChange}
               onFocus={() => setShowResults(true)}
-              className="w-full pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-3 pr-10 py-2 border border-normal rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 bg-input text-primary transition-theme"
             />
             {isLoading && (
               <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                <svg className="animate-spin h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin h-5 w-5 text-secondary transition-theme" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
@@ -149,13 +149,13 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
           </div>
           
           {showResults && searchTerm.length >= 2 && (
-            <div className="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg border border-gray-200 max-h-60 overflow-y-auto">
+            <div className="absolute z-10 w-full mt-1 card rounded-md shadow-lg border border-normal transition-theme max-h-60 overflow-y-auto">
               {developers.length > 0 ? (
                 <ul>
                   {developers.map((developer) => (
                     <li 
                       key={developer.id} 
-                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center"
+                      className="px-4 py-2 hover:bg-navbar cursor-pointer flex items-center transition-theme"
                       onClick={() => handleSelectDeveloper(developer)}
                     >
                       {developer.image_background && (
@@ -168,16 +168,16 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
                         </div>
                       )}
                       <div className="flex-1">
-                        <div className="text-sm font-medium text-gray-900">{developer.name}</div>
+                        <div className="text-sm font-medium text-primary transition-theme">{developer.name}</div>
                         {developer.games_count && (
-                          <div className="text-xs text-gray-500">{developer.games_count} juegos</div>
+                          <div className="text-xs text-secondary transition-theme">{developer.games_count} juegos</div>
                         )}
                       </div>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <div className="px-4 py-2 text-sm text-gray-500">
+                <div className="px-4 py-2 text-sm text-secondary transition-theme">
                   No se encontraron desarrolladores
                 </div>
               )}
@@ -186,7 +186,7 @@ const DeveloperSearch: React.FC<DeveloperSearchProps> = ({ value, onChange }) =>
         </div>
       )}
       
-      <p className="mt-1 text-xs text-gray-500">
+      <p className="mt-1 text-xs text-secondary transition-theme">
         {selectedDeveloper 
           ? `Desarrollador seleccionado: ${selectedDeveloper.name}`
           : "Busca y selecciona un desarrollador"}
