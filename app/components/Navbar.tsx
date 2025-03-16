@@ -116,22 +116,13 @@ const Navbar: React.FC = () => {
             Inicio
           </Link>
           <Link
-            to="/top-games"
+            to="/acerca-de"
             className={`${
               isActive('/top-games') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
             } block px-3 py-2 rounded-md text-base transition-colors hover:bg-opacity-20 hover:bg-gray-200`}
             onClick={() => setIsMenuOpen(false)}
           >
-            Top Juegos
-          </Link>
-          <Link
-            to="/new-releases"
-            className={`${
-              isActive('/new-releases') ? 'border-b-2 border-indigo-500 active-link font-medium' : ''
-            } block px-3 py-2 rounded-md text-base transition-colors hover:bg-opacity-20 hover:bg-gray-200`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Nuevos Lanzamientos
+            Acerca De
           </Link>
           <a
             href="https://rawg.io/apidocs"
