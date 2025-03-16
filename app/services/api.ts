@@ -45,7 +45,7 @@ export const getGames = async (
     url += `&developers=${filters.developer}` // Usamos el slug del desarrollador
   }
   
-  console.log("API GET URL:", url);
+  // Eliminado el console.log de la URL
 
   const response = await fetch(url)
   if (!response.ok) {
@@ -67,7 +67,7 @@ export const getDevelopers = async (
     url += `&search=${encodeURIComponent(search)}`;
   }
   
-  console.log("API GET URL (Developers):", url);
+  // Eliminado el console.log de la URL de desarrolladores
   
   const response = await fetch(url);
   if (!response.ok) {
@@ -79,7 +79,7 @@ export const getDevelopers = async (
 
 export const getGameDetails = async (id: string): Promise<any> => {
   const url = `${BASE_URL}/games/${id}?key=${API_KEY}`
-  console.log("API GET URL (Details):", url);
+  // Eliminado el console.log de detalles
 
   const response = await fetch(url)
   if (!response.ok) {
@@ -91,38 +91,37 @@ export const getGameDetails = async (id: string): Promise<any> => {
 
 export const getGameTrailers = async (id: string): Promise<any> => {
   const url = `${BASE_URL}/games/${id}/movies?key=${API_KEY}`
-  console.log("API GET URL (Trailers):", url);
+  // Eliminado el console.log de trailers
 
   try {
     const response = await fetch(url)
     if (!response.ok) {
-      console.error(`Error fetching trailers: ${response.status} ${response.statusText}`);
+      // Simplificado el manejo de errores
       throw new Error('Error fetching game trailers')
     }
     const data = await response.json()
-    console.log("Trailer data received:", data);
+    // Eliminado el console.log de datos de trailers
     return data;
   } catch (error) {
-    console.error("Error in getGameTrailers:", error);
+    // Mantenemos el log de error pero de forma más genérica
+    console.error("Error fetching trailers");
     throw error;
   }
 }
 
 export const getGameScreenshots = async (id: string): Promise<any> => {
   const url = `${BASE_URL}/games/${id}/screenshots?key=${API_KEY}`
-  console.log("API GET URL (Screenshots):", url);
 
   try {
     const response = await fetch(url)
     if (!response.ok) {
-      console.error(`Error fetching screenshots: ${response.status} ${response.statusText}`);
       throw new Error('Error fetching game screenshots')
     }
     const data = await response.json()
-    console.log("Screenshots data received:", data);
     return data;
   } catch (error) {
-    console.error("Error in getGameScreenshots:", error);
+    // Simplificado el mensaje de error
+    console.error("Error fetching screenshots");
     throw error;
   }
 }
