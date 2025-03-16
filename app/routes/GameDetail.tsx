@@ -132,37 +132,29 @@ const GameDetailPage: React.FC = () => {
           if (trailerData && trailerData.results && trailerData.results.length > 0) {
             setTrailers(trailerData.results)
             setActiveTrailer(trailerData.results[0])
-            console.log("Trailer data:", trailerData.results[0])
           } else {
-            console.log("No trailers found, loading screenshots instead")
             // Si no hay trailers, carga screenshots
             try {
               const screenshotsData = await getGameScreenshots(id)
               if (screenshotsData && screenshotsData.results && screenshotsData.results.length > 0) {
                 setScreenshots(screenshotsData.results)
                 setActiveScreenshot(screenshotsData.results[0])
-                console.log("Screenshots data:", screenshotsData.results[0])
               }
             } catch (screenshotError) {
-              console.error('Error fetching screenshots:', screenshotError)
             }
           }
         } catch (trailerError) {
-          console.error('Error fetching trailers:', trailerError)
           // Si hay un error al cargar los trailers, intenta cargar screenshots
           try {
             const screenshotsData = await getGameScreenshots(id)
             if (screenshotsData && screenshotsData.results && screenshotsData.results.length > 0) {
               setScreenshots(screenshotsData.results)
               setActiveScreenshot(screenshotsData.results[0])
-              console.log("Screenshots data:", screenshotsData.results[0])
             }
           } catch (screenshotError) {
-            console.error('Error fetching screenshots:', screenshotError)
           }
         }
       } catch (error) {
-        console.error('Error fetching game detail:', error)
         setError('No se pudo cargar la información del juego')
       } finally {
         setLoading(false)
