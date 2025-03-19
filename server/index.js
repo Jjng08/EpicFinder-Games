@@ -291,3 +291,5 @@ app.get('/api/games/:id/screenshots', async (req, res) => {
 
 app.listen(5000, console.log("server is running: port=5000"));
 
+
+module.exports = app;
