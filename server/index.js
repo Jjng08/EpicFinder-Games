@@ -8,7 +8,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const allowedOrigins = [
   'http://localhost:3000',               // Desarrollo frontend local
   'http://localhost:5173',               // Vite dev server
-  'https://epic-finder-games.vercel.app/'      // Tu dominio de producción
+  'https://epic-finder-games.vercel.app'      // Tu dominio de producción
 ];
 
 app.use(cors({
@@ -203,7 +203,16 @@ const getGameScreenshots = async (id) => {
 };
 
 app.get('/', (req, res) => {
-  res.send();
+  res.json({
+    status: 'API is running',
+    endpoints: {
+      games: '/api/games',
+      gameDetails: '/api/games/:id',
+      trailers: '/api/games/:id/trailers',
+      screenshots: '/api/games/:id/screenshots',
+      developers: '/api/developers'
+    }
+  });
 });
 
 // Endpoint to get games
@@ -289,7 +298,7 @@ app.get('/api/games/:id/screenshots', async (req, res) => {
   }
 });
 
-app.listen(5000, console.log("server is running: port=5000"));
-
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
 
 module.exports = app;
