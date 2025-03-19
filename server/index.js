@@ -8,7 +8,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const allowedOrigins = [
   'http://localhost:3000',               // Desarrollo frontend local
   'http://localhost:5173',               // Vite dev server
-  'https://tu-dominio-frontend.com'      // Tu dominio de producción
+  'https://epic-finder-games.vercel.app/'      // Tu dominio de producción
 ];
 
 app.use(cors({
