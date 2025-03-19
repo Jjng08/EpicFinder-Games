@@ -1,7 +1,7 @@
 import type { FiltersType } from '../types'
 
-const API_KEY = import.meta.env.VITE_RAWG_API_KEY
-const BASE_URL = 'https://api.rawg.io/api'
+// Change the BASE_URL to point to your Express backend
+const BASE_URL = 'http://localhost:5000/api'
 
 export const getGames = async (
   searchQuery: string = '', 
@@ -9,44 +9,39 @@ export const getGames = async (
   pageSize: number = 20,
   filters: FiltersType = { year: '', genre: '', platform: '', tag: '', developer: '' }
 ): Promise<any> => {
-  // Construimos la URL con los parámetros de búsqueda y paginación
-  let url = `${BASE_URL}/games?key=${API_KEY}&ordering=-metacritic&page=${page}&page_size=${pageSize}`
+  // Build URL with query parameters
+  let url = `${BASE_URL}/games?page=${page}&pageSize=${pageSize}`
   
-  // Añadimos el parámetro de búsqueda si existe
+  // Add search parameter if it exists
   if (searchQuery) {
     url += `&search=${encodeURIComponent(searchQuery)}`
-    url += '&search_precise=true' // Para mejorar la precisión de la búsqueda
   }
   
-  // Añadimos el filtro por plataforma si existe
+  // Add platform filter if it exists
   if (filters.platform) {
-    url += `&platforms=${filters.platform}` // Usamos directamente el ID numérico de la plataforma
+    url += `&platform=${filters.platform}`
   }
   
-  // Añadimos el filtro por género si existe
+  // Add genre filter if it exists
   if (filters.genre) {
-    url += `&genres=${filters.genre}` // Usamos directamente el ID numérico del género
+    url += `&genre=${filters.genre}`
   }
   
-  // Filtramos por año si se proporciona
+  // Add year filter if it exists
   if (filters.year) {
-    const startDate = `${filters.year}-01-01`;
-    const endDate = `${filters.year}-12-31`;
-    url += `&dates=${startDate},${endDate}`;
+    url += `&year=${filters.year}`
   }
   
-  // Añadimos el filtro por tag si existe
+  // Add tag filter if it exists
   if (filters.tag) {
-    url += `&tags=${filters.tag}` // Usamos directamente el ID numérico del tag
+    url += `&tag=${filters.tag}`
   }
   
-  // Añadimos el filtro por desarrollador si existe
+  // Add developer filter if it exists
   if (filters.developer) {
-    url += `&developers=${filters.developer}` // Usamos el slug del desarrollador
+    url += `&developer=${filters.developer}`
   }
   
-  // Eliminado el console.log de la URL
-
   const response = await fetch(url)
   if (!response.ok) {
     throw new Error('Error fetching games')
@@ -55,19 +50,17 @@ export const getGames = async (
   return data
 }
 
-// Función para obtener desarrolladores
+// Function to get developers
 export const getDevelopers = async (
   page: number = 1, 
   pageSize: number = 20,
   search: string = ''
 ): Promise<any> => {
-  let url = `${BASE_URL}/developers?key=${API_KEY}&page=${page}&page_size=${pageSize}`;
+  let url = `${BASE_URL}/developers?page=${page}&pageSize=${pageSize}`;
   
   if (search) {
     url += `&search=${encodeURIComponent(search)}`;
   }
-  
-  // Eliminado el console.log de la URL de desarrolladores
   
   const response = await fetch(url);
   if (!response.ok) {
@@ -78,8 +71,7 @@ export const getDevelopers = async (
 }
 
 export const getGameDetails = async (id: string): Promise<any> => {
-  const url = `${BASE_URL}/games/${id}?key=${API_KEY}`
-  // Eliminado el console.log de detalles
+  const url = `${BASE_URL}/games/${id}`
 
   const response = await fetch(url)
   if (!response.ok) {
@@ -90,27 +82,23 @@ export const getGameDetails = async (id: string): Promise<any> => {
 }
 
 export const getGameTrailers = async (id: string): Promise<any> => {
-  const url = `${BASE_URL}/games/${id}/movies?key=${API_KEY}`
-  // Eliminado el console.log de trailers
+  const url = `${BASE_URL}/games/${id}/trailers`
 
   try {
     const response = await fetch(url)
     if (!response.ok) {
-      // Simplificado el manejo de errores
       throw new Error('Error fetching game trailers')
     }
     const data = await response.json()
-    // Eliminado el console.log de datos de trailers
     return data;
   } catch (error) {
-    // Mantenemos el log de error pero de forma más genérica
     console.error("Error fetching trailers");
     throw error;
   }
 }
 
 export const getGameScreenshots = async (id: string): Promise<any> => {
-  const url = `${BASE_URL}/games/${id}/screenshots?key=${API_KEY}`
+  const url = `${BASE_URL}/games/${id}/screenshots`
 
   try {
     const response = await fetch(url)
@@ -120,7 +108,6 @@ export const getGameScreenshots = async (id: string): Promise<any> => {
     const data = await response.json()
     return data;
   } catch (error) {
-    // Simplificado el mensaje de error
     console.error("Error fetching screenshots");
     throw error;
   }
