@@ -1,7 +1,7 @@
 import type { FiltersType } from '../types'
 
 // Change the BASE_URL to point to your Express backend
-const BASE_URL = 'https://epic-finder-server.vercel.app/api'
+const BASE_URL = 'https://epic-finder-games-server.vercel.app/api'
 
 export const getGames = async (
   searchQuery: string = '', 
